@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dār al-Fiqh wa Ushūlih — Materi Fikih dan Ushul Fikih</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{
+  --parchment:#F6F1E4;
+  --parchment-deep:#EDE5D0;
+  --ink:#2B2A24;
+  --ink-soft:#5A5848;
+  --green-deep:#2F4A3C;
+  --green-mid:#4C6F5C;
+  --green-pale:#DCE6DD;
+  --gold:#A9792C;
+  --gold-pale:#F0E2BE;
+  --rule:#D8CDA9;
+  --maroon:#6E2F2C;
+  --maroon-pale:#F1E0DC;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+body{
+  font-family:'Inter', sans-serif;
+  background:var(--parchment);
+  color:var(--ink);
+  line-height:1.7;
+}
+.arabic{ font-family:'Amiri', serif; direction:rtl; }
+.serif{ font-family:'Lora', serif; }
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  padding:64px 32px 48px;
+  text-align:center;
+  border-bottom:1px solid var(--rule);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(169,121,44,0.07), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(47,74,60,0.06), transparent 40%);
+}
+.hero-eyebrow{
+  font-size:13px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:14px;
+}
+.hero-title{
+  font-family:'Lora', serif;
+  font-size:40px;
+  font-weight:600;
+  color:var(--green-deep);
+  margin-bottom:8px;
+}
+.hero-arabic{
+  font-size:30px;
+  color:var(--green-mid);
+  margin-bottom:18px;
+  opacity:0.85;
+}
+.hero-sub{
+  font-size:16px;
+  color:var(--ink-soft);
+  max-width:540px;
+  margin:0 auto 28px;
+}
+.hero-stats{
+  display:flex;
+  justify-content:center;
+  gap:36px;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.hero-stat{ text-align:center; }
+.hero-stat .num{ font-family:'Lora', serif; font-size:26px; font-weight:600; color:var(--green-deep); }
+.hero-stat .lbl{ font-size:12.5px; color:var(--ink-soft); letter-spacing:0.02em; }
+
+/* ===== NAV TABS ===== */
+.nav-wrap{
+  position:sticky; top:0; z-index:50;
+  background:var(--parchment);
+  border-bottom:1px solid var(--rule);
+  padding:0 24px;
+}
+.nav-tabs{
+  display:flex;
+  gap:4px;
+  max-width:980px;
+  margin:0 auto;
+  overflow-x:auto;
+}
+.nav-tab{
+  flex:0 0 auto;
+  padding:16px 18px 13px;
+  font-size:14.5px;
+  font-weight:500;
+  color:var(--ink-soft);
+  border-bottom:2.5px solid transparent;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:color 0.15s, border-color 0.15s;
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+.nav-tab i{ font-size:17px; }
+.nav-tab:hover{ color:var(--green-deep); }
+.nav-tab.active{ color:var(--green-deep); border-bottom-color:var(--gold); }
+
+/* ===== MAIN ===== */
+main{ max-width:980px; margin:0 auto; padding:40px 24px 80px; }
+.panel{ display:none; }
+.panel.active{ display:block; animation:fadeIn 0.25s ease; }
+@keyframes fadeIn{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+.section-head{ margin-bottom:28px; }
+.section-head .eyebrow{
+  font-size:12.5px; letter-spacing:0.1em; text-transform:uppercase;
+  color:var(--gold); font-weight:600; margin-bottom:6px;
+}
+.section-head h2{
+  font-family:'Lora', serif; font-size:26px; font-weight:600; color:var(--green-deep);
+  margin-bottom:8px;
+}
+.section-head p{ color:var(--ink-soft); font-size:15px; max-width:640px; }
+
+/* search */
+.search-box{
+  display:flex; align-items:center; gap:10px;
+  background:var(--parchment-deep);
+  border:1px solid var(--rule);
+  border-radius:10px;
+  padding:10px 14px;
+  margin-bottom:28px;
+}
+.search-box i{ color:var(--ink-soft); font-size:18px; }
+.search-box input{
+  border:none; background:none; outline:none;
+  font-family:'Inter', sans-serif; font-size:14.5px; color:var(--ink);
+  width:100%;
+}
+.search-box input::placeholder{ color:var(--ink-soft); opacity:0.7; }
+
+/* category grid (fiqh dasar) */
+.bab-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(210px, 1fr));
+  gap:14px;
+}
+.bab-card{
+  border:1px solid var(--rule);
+  background:var(--parchment-deep);
+  border-radius:12px;
+  padding:18px 18px 16px;
+  cursor:pointer;
+  transition:border-color 0.15s, transform 0.1s;
+}
+.bab-card:hover{ border-color:var(--gold); transform:translateY(-1px); }
+.bab-card .icon{
+  width:38px; height:38px; border-radius:9px;
+  background:var(--green-pale); color:var(--green-deep);
+  display:flex; align-items:center; justify-content:center;
+  font-size:19px; margin-bottom:12px;
+}
+.bab-card h3{ font-size:15.5px; font-weight:600; color:var(--ink); margin-bottom:5px; }
+.bab-card p{ font-size:13px; color:var(--ink-soft); }
+.bab-card .count{
+  display:inline-block; margin-top:10px; font-size:11.5px; color:var(--gold);
+  font-weight:600; letter-spacing:0.02em;
+}
+
+/* materi detail card */
+.materi-card{
+  border:1px solid var(--rule);
+  background:#fff;
+  border-radius:14px;
+  padding:24px 26px;
+  margin-bottom:18px;
+}
+.materi-card .tag{
+  display:inline-block;
+  font-size:11px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;
+  background:var(--green-pale); color:var(--green-deep);
+  padding:3px 10px; border-radius:20px;
+  margin-bottom:12px;
+}
+.materi-card h3{ font-family:'Lora', serif; font-size:19px; font-weight:600; color:var(--ink); margin-bottom:10px; }
+.materi-card .dalil{
+  font-family:'Amiri', serif; direction:rtl; text-align:right;
+  font-size:21px; color:var(--green-deep);
+  background:var(--green-pale);
+  border-radius:10px; padding:14px 18px; margin:14px 0;
+  line-height:2;
+}
+.materi-card .dalil-terjemah{ font-size:13.5px; color:var(--ink-soft); font-style:italic; margin-top:-6px; margin-bottom:14px; }
+.materi-card p{ font-size:14.5px; color:var(--ink); margin-bottom:10px; }
+.materi-card .ikhtilaf{
+  border-left:3px solid var(--gold); border-radius:0;
+  background:var(--gold-pale);
+  padding:12px 16px; margin-top:14px;
+  font-size:13.5px;
+}
+.materi-card .ikhtilaf .madz{ font-weight:600; color:var(--ink); }
+
+/* visual fiqh cards */
+.visual-card{
+  border:1px solid var(--rule);
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  margin-bottom:20px;
+}
+.visual-card .visual-img{
+  background:var(--green-pale);
+  padding:20px;
+  display:flex; justify-content:center; align-items:center;
+}
+.visual-card .visual-body{ padding:20px 24px; }
+.visual-card h3{ font-family:'Lora', serif; font-size:18px; font-weight:600; color:var(--ink); margin-bottom:8px; }
+.visual-card .quick-fact{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--maroon-pale); color:var(--maroon);
+  font-size:13px; font-weight:600;
+  padding:5px 12px; border-radius:20px; margin-bottom:12px;
+}
+.visual-card p{ font-size:14px; color:var(--ink-soft); }
+
+/* ushul fiqh accordion */
+.accordion-item{
+  border:1px solid var(--rule);
+  border-radius:12px;
+  margin-bottom:10px;
+  overflow:hidden;
+  background:#fff;
+}
+.accordion-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 20px;
+  cursor:pointer;
+}
+.accordion-head h4{ font-size:15px; font-weight:500; color:var(--ink); }
+.accordion-head i{ color:var(--ink-soft); transition:transform 0.2s; font-size:18px; }
+.accordion-item.open .accordion-head i{ transform:rotate(180deg); }
+.accordion-body{ max-height:0; overflow:hidden; transition:max-height 0.25s ease; }
+.accordion-item.open .accordion-body{ max-height:600px; }
+.accordion-content{ padding:0 20px 18px; font-size:14px; color:var(--ink-soft); }
+.accordion-content .label{ font-weight:600; color:var(--green-deep); font-size:13px; margin-top:10px; display:block; }
+
+/* glossary */
+.glossary-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px; }
+.gloss-item{ border:1px solid var(--rule); border-radius:10px; padding:14px 16px; background:var(--parchment-deep); }
+.gloss-item .term{ font-weight:600; color:var(--green-deep); font-size:14.5px; }
+.gloss-item .term .ar{ font-family:'Amiri', serif; font-size:16px; margin-left:6px; color:var(--ink-soft); }
+.gloss-item .def{ font-size:13.5px; color:var(--ink-soft); margin-top:4px; }
+
+/* footer note */
+.footnote{
+  margin-top:40px; padding-top:20px; border-top:1px solid var(--rule);
+  font-size:12.5px; color:var(--ink-soft); text-align:center;
+}
+
+/* ===== FLOATING SUGGESTION BOX ===== */
+.suggest-fab{
+  position:fixed;
+  bottom:24px; right:24px;
+  z-index:100;
+  background:var(--green-deep);
+  color:#fff;
+  border-radius:50px;
+  padding:13px 20px;
+  display:flex; align-items:center; gap:8px;
+  font-size:14px; font-weight:500;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(47,74,60,0.35);
+  transition:transform 0.15s, box-shadow 0.15s;
+  border:none;
+  font-family:'Inter', sans-serif;
+}
+.suggest-fab:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(47,74,60,0.45); }
+.suggest-fab i{ font-size:18px; }
+
+.suggest-modal-overlay{
+  display:none;
+  position:fixed; inset:0;
+  background:rgba(43,42,36,0.45);
+  z-index:200;
+  align-items:center; justify-content:center;
+  padding:20px;
+}
+.suggest-modal-overlay.open{ display:flex; }
+.suggest-modal{
+  background:var(--parchment);
+  border-radius:16px;
+  max-width:380px;
+  width:100%;
+  padding:28px 26px;
+  text-align:center;
+  border:1px solid var(--rule);
+}
+.suggest-modal .modal-icon{
+  width:48px; height:48px; border-radius:50%;
+  background:var(--green-pale); color:var(--green-deep);
+  display:flex; align-items:center; justify-content:center;
+  font-size:24px; margin:0 auto 16px;
+}
+.suggest-modal h3{ font-family:'Lora', serif; font-size:19px; color:var(--ink); margin-bottom:10px; }
+.suggest-modal p{ font-size:14px; color:var(--ink-soft); margin-bottom:20px; }
+.suggest-modal .btn-row{ display:flex; gap:10px; }
+.suggest-modal button{
+  flex:1;
+  padding:11px 16px;
+  border-radius:10px;
+  font-size:14px; font-weight:500;
+  font-family:'Inter', sans-serif;
+  cursor:pointer;
+  border:1px solid var(--rule);
+}
+.suggest-modal .btn-primary{
+  background:var(--green-deep); color:#fff; border:none;
+}
+.suggest-modal .btn-secondary{
+  background:none; color:var(--ink-soft);
+}
+
+@media (max-width: 600px){
+  .hero-title{ font-size:30px; }
+  .hero-stats{ gap:22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-eyebrow">Materi fikih dan usul fikih</div>
+  <div class="hero-title">Dār al-Fiqh wa Ushūlih</div>
+  <div class="hero-arabic arabic">دار الفقه وأصوله</div>
+  <p class="hero-sub">Belajar Fikih dan Ushul Fikih dengan Mudah dan Praktis.</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">5</div><div class="lbl">Bab fikih dasar</div></div>
+    <div class="hero-stat"><div class="num">6</div><div class="lbl">Kajian ushul fikih</div></div>
+    <div class="hero-stat"><div class="num">4</div><div class="lbl">Visualisasi kontekstual</div></div>
+  </div>
+</div>
+
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-panel="fikih"><i class="ti ti-book-2"></i>Fikih</div>
+    <div class="nav-tab" data-panel="kaidah-fikih"><i class="ti ti-ruler-2"></i>Kaidah Fikih</div>
+    <div class="nav-tab" data-panel="ushul"><i class="ti ti-stack-2"></i>Ushul Fikih</div>
+    <div class="nav-tab" data-panel="kaidah-ushul"><i class="ti ti-sitemap"></i>Kaidah Ushul Fikih</div>
+    <div class="nav-tab" data-panel="visual"><i class="ti ti-eye"></i>Fikih Visual</div>
+    <div class="nav-tab" data-panel="glosarium-fikih"><i class="ti ti-list-details"></i>Glosarium Fikih</div>
+    <div class="nav-tab" data-panel="glosarium-ushul"><i class="ti ti-list-search"></i>Glosarium Ushul Fikih</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ===================== PANEL: FIKIH ===================== -->
+  <section class="panel active" id="panel-fikih">
+    <div class="section-head">
+      <div class="eyebrow">Untuk masyarakat umum</div>
+      <h2>Fikih dasar keseharian</h2>
+      <p>Materi pokok ibadah yang dibutuhkan setiap muslim — disusun ringkas, dengan bahasa yang mudah dipahami tanpa mengurangi ketepatan istilah.</p>
+    </div>
+
+    <div class="search-box">
+      <i class="ti ti-search"></i>
+      <input type="text" id="search-dasar" placeholder="Cari topik, misalnya: wudhu, zakat, niat puasa...">
+    </div>
+
+    <div class="bab-grid" id="bab-grid-dasar">
+      <div class="bab-card" data-bab="thaharah">
+        <div class="icon"><i class="ti ti-droplet"></i></div>
+        <h3>Thaharah (bersuci)</h3>
+        <p>Wudhu, mandi wajib, tayamum, dan ketentuan najis.</p>
+        <span class="count">4 pokok bahasan</span>
+      </div>
+      <div class="bab-card" data-bab="shalat">
+        <div class="icon"><i class="ti ti-building-mosque"></i></div>
+        <h3>Shalat</h3>
+        <p>Syarat, rukun, hal yang membatalkan, dan shalat berjamaah.</p>
+        <span class="count">4 pokok bahasan</span>
+      </div>
+      <div class="bab-card" data-bab="puasa">
+        <div class="icon"><i class="ti ti-moon-stars"></i></div>
+        <h3>Puasa</h3>
+        <p>Niat, hal yang membatalkan, dan yang diperbolehkan.</p>
+        <span class="count">3 pokok bahasan</span>
+      </div>
+      <div class="bab-card" data-bab="zakat">
+        <div class="icon"><i class="ti ti-coins"></i></div>
+        <h3>Zakat</h3>
+        <p>Nisab, jenis harta wajib zakat, dan golongan penerima.</p>
+        <span class="count">3 pokok bahasan</span>
+      </div>
+      <div class="bab-card" data-bab="haji">
+        <div class="icon"><i class="ti ti-map-pin"></i></div>
+        <h3>Haji &amp; umrah</h3>
+        <p>Miqat, rukun, dan urutan pelaksanaan manasik.</p>
+        <span class="count">3 pokok bahasan</span>
+      </div>
+    </div>
+
+    <div id="detail-dasar" style="margin-top:24px;"></div>
+  </section>
+
+  <!-- ===================== PANEL: KAIDAH FIKIH ===================== -->
+  <section class="panel" id="panel-kaidah-fikih">
+    <div class="section-head">
+      <div class="eyebrow">Prinsip-prinsip dasar</div>
+      <h2>Kaidah Fikih</h2>
+      <p>Kaidah-kaidah umum fikih yang menjadi acuan penetapan hukum dalam berbagai permasalahan keseharian.</p>
+    </div>
+    <div id="accordion-kaidah-fikih"></div>
+  </section>
+
+  <!-- ===================== PANEL: USHUL FIQH ===================== -->
+  <section class="panel" id="panel-ushul">
+    <div class="section-head">
+      <div class="eyebrow">Untuk mahasantri</div>
+      <h2>Ushul Fikih &amp; Maqashid Dharuriyat</h2>
+      <p>Kajian yang lebih dalam — memuat dalil, kaidah ushul, dan ikhtilaf ulama empat mazhab. Disusun mengikuti kerangka lima tujuan pokok syariat (al-dharuriyat al-khams).</p>
+    </div>
+    <div id="accordion-ushul"></div>
+  </section>
+
+  <!-- ===================== PANEL: KAIDAH USHUL FIKIH ===================== -->
+  <section class="panel" id="panel-kaidah-ushul">
+    <div class="section-head">
+      <div class="eyebrow">Metodologi penetapan hukum</div>
+      <h2>Kaidah Ushul Fikih</h2>
+      <p>Kaidah-kaidah dalam ilmu ushul fikih yang digunakan para ulama untuk menggali dan menetapkan hukum syariat dari sumber-sumbernya.</p>
+    </div>
+    <div id="accordion-kaidah-ushul"></div>
+  </section>
+
+  <!-- ===================== PANEL: FIQH VISUAL ===================== -->
+  <section class="panel" id="panel-visual">
+    <div class="section-head">
+      <div class="eyebrow">Memahami, bukan sekadar menghafal</div>
+      <h2>Fikih Visual &amp; Kontekstual</h2>
+      <p>Banyak ketentuan fikih yang dihafal teksnya tapi tidak terbayang wujudnya. Bagian ini memvisualisasikan ketentuan tersebut agar lebih mudah dipahami secara nyata.</p>
+    </div>
+    <div id="visual-grid"></div>
+  </section>
+
+  <!-- ===================== PANEL: GLOSARIUM FIKIH ===================== -->
+  <section class="panel" id="panel-glosarium-fikih">
+    <div class="section-head">
+      <div class="eyebrow">Referensi cepat</div>
+      <h2>Glosarium Istilah Fikih</h2>
+      <p>Kumpulan istilah yang sering muncul dalam pembahasan fikih.</p>
+    </div>
+    <div class="glossary-grid" id="glossary-grid-fikih"></div>
+  </section>
+
+  <!-- ===================== PANEL: GLOSARIUM USHUL FIKIH ===================== -->
+  <section class="panel" id="panel-glosarium-ushul">
+    <div class="section-head">
+      <div class="eyebrow">Referensi cepat</div>
+      <h2>Glosarium Istilah Ushul Fikih</h2>
+      <p>Kumpulan istilah yang sering muncul dalam pembahasan ushul fikih dan maqashid syariah.</p>
+    </div>
+    <div class="glossary-grid" id="glossary-grid-ushul"></div>
+  </section>
+
+  <div class="footnote">Disusun sebagai materi pembelajaran fikih untuk mahasantri dan masyarakat umum. Rujukan utama: kitab-kitab fikih dan ushul fikih mazhab Syafi'i, dengan perbandingan mazhab lain bila relevan.<br><br>Disusun oleh <strong style="color:var(--green-deep); font-weight:500;">Ainul Adhim</strong></div>
+
+</main>
+
+<!-- Floating Suggestion Button -->
+<button class="suggest-fab" id="suggest-fab-btn">
+  <i class="ti ti-message-2-plus"></i> Saran &amp; Masukan
+</button>
+
+<div class="suggest-modal-overlay" id="suggest-overlay">
+  <div class="suggest-modal">
+    <div class="modal-icon"><i class="ti ti-message-2-plus"></i></div>
+    <h3>Punya saran untuk kami?</h3>
+    <p>Kami sangat menghargai masukan Anda untuk perbaikan materi maupun tampilan web ini. Klik tombol di bawah untuk mengisi formulir saran.</p>
+    <div class="btn-row">
+      <button class="btn-secondary" id="suggest-cancel">Nanti saja</button>
+      <button class="btn-primary" id="suggest-go">Isi Formulir</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.js"></script>
+<script>
+// ===================== DATA =====================
+const dataDasar = {
+  thaharah: {
+    title: "Thaharah (bersuci)",
+    tag: "Fikih dasar",
+    items: [
+      {
+        h: "Wudhu",
+        dalil: "يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ",
+        terjemah: "Wahai orang-orang yang beriman, apabila kamu hendak melaksanakan shalat, maka basuhlah wajahmu dan kedua tanganmu sampai siku (QS. Al-Ma'idah: 6).",
+        teks: "Wudhu adalah bersuci dengan air pada anggota tertentu untuk menghilangkan hadas kecil. Rukunnya mencakup niat, membasuh wajah, membasuh kedua tangan sampai siku, mengusap sebagian kepala, dan membasuh kedua kaki sampai mata kaki, dilakukan secara berurutan."
+      },
+      {
+        h: "Air dua kullah",
+        dalil: "إِذَا بَلَغَ الْمَاءُ قُلَّتَيْنِ لَمْ يُنَجِّسْهُ شَيْءٌ",
+        terjemah: "Apabila air telah mencapai dua kullah, maka tidak ada sesuatu pun yang menajiskannya (HR. Abu Dawud, dinilai shahih oleh sejumlah ulama).",
+        teks: "Air sebanyak dua kullah dianggap sebagai air yang banyak (katsir) sehingga tidak mudah menjadi najis kecuali berubah rasa, warna, atau baunya. Lihat penjelasan ukurannya secara visual di bagian Fikih Visual.",
+        ikhtilaf: "Syafi'iyah menetapkan ukuran dua kullah sekitar 216 liter (kubus berukuran ±60cm). Sebagian ulama Hanafiyah tidak memakai patokan kullah, melainkan ukuran luas permukaan air (10×10 hasta)."
+      }
+    ]
+  },
+  shalat: {
+    title: "Shalat",
+    tag: "Fikih dasar",
+    items: [
+      {
+        h: "Syarat wajib shalat",
+        dalil: "إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا",
+        terjemah: "Sesungguhnya shalat itu adalah kewajiban yang ditentukan waktunya bagi orang-orang yang beriman (QS. An-Nisa: 103).",
+        teks: "Shalat wajib bagi muslim, berakal, dan telah baligh. Shalat lima waktu adalah amalan wajib yang menjadi pembeda utama antara iman dan kekafiran dalam banyak hadis Nabi ﷺ."
+      },
+      {
+        h: "Batas aurat dalam shalat",
+        teks: "Bagi laki-laki, aurat yang wajib ditutup dalam shalat adalah antara pusar dan lutut, namun disunnahkan menutup bahu hingga lutut. Bagi perempuan, wajib menutup seluruh tubuh kecuali wajah dan kedua telapak tangan.",
+        ikhtilaf: "Sebagian ulama Hanafiyah memasukkan kedua telapak kaki perempuan sebagai bagian yang boleh terbuka dalam shalat, sementara Syafi'iyah mewajibkan menutupnya."
+      }
+    ]
+  },
+  puasa: {
+    title: "Puasa",
+    tag: "Fikih dasar",
+    items: [
+      {
+        h: "Niat puasa",
+        dalil: "مَنْ لَمْ يُبَيِّتِ الصِّيَامَ قَبْلَ الْفَجْرِ فَلَا صِيَامَ لَهُ",
+        terjemah: "Siapa yang tidak berniat puasa sebelum fajar, maka tidak sah puasanya (HR. Abu Dawud dan an-Nasa'i).",
+        teks: "Niat puasa Ramadhan wajib dilakukan pada malam hari sebelum terbit fajar, untuk setiap harinya menurut mazhab Syafi'i, karena puasa wajib termasuk ibadah yang memerlukan niat ta'yin (penentuan jenis ibadah) di malam hari."
+      }
+    ]
+  },
+  zakat: {
+    title: "Zakat",
+    tag: "Fikih dasar",
+    items: [
+      {
+        h: "Nisab zakat emas dan perak",
+        teks: "Nisab emas adalah 85 gram, sedangkan nisab perak adalah 595 gram. Apabila harta simpanan mencapai nisab dan telah dimiliki selama satu tahun (haul), maka wajib dizakati sebesar 2,5%."
+      }
+    ]
+  },
+  haji: {
+    title: "Haji & umrah",
+    tag: "Fikih dasar",
+    items: [
+      {
+        h: "Miqat",
+        teks: "Miqat adalah batas waktu dan tempat dimulainya ihram. Ada lima miqat makani yang ditetapkan Nabi ﷺ untuk jamaah dari berbagai arah. Lihat peta dan letaknya secara visual di bagian Fikih Visual."
+      }
+    ]
+  }
+};
+
+const dataKaidahFikih = [
+  {
+    title: "الأمور بمقاصدها — Segala perkara dinilai berdasarkan tujuannya",
+    badge: "Kaidah 1",
+    body: `<span class="label">Makna</span>Hukum suatu perbuatan ditentukan oleh niat dan tujuan pelakunya, bukan semata bentuk lahiriahnya.
+    <span class="label">Dasar</span>Hadis Nabi ﷺ: "Innama al-a'malu bin-niyyat" — sesungguhnya segala amal bergantung pada niatnya.
+    <span class="label">Contoh penerapan</span>Seseorang yang berwudhu dengan niat mendinginkan diri, maka wudhunya tidak sah karena niatnya bukan bersuci.`
+  },
+  {
+    title: "اليقين لا يزال بالشك — Keyakinan tidak bisa dihilangkan oleh keraguan",
+    badge: "Kaidah 2",
+    body: `<span class="label">Makna</span>Hukum asal yang sudah pasti tidak bisa berubah hanya karena keraguan yang muncul belakangan.
+    <span class="label">Contoh penerapan</span>Seseorang yang ragu apakah wudhunya batal atau tidak, maka ia dianggap masih dalam keadaan suci karena itu adalah hukum asalnya.`
+  },
+  {
+    title: "المشقة تجلب التيسير — Kesulitan mendatangkan kemudahan",
+    badge: "Kaidah 3",
+    body: `<span class="label">Makna</span>Syariat memberikan keringanan (rukhshah) ketika seseorang menghadapi kesulitan yang nyata dalam menjalankan kewajiban.
+    <span class="label">Contoh penerapan</span>Orang sakit boleh shalat sambil duduk atau berbaring. Musafir boleh menjamak dan mengqashar shalat.`
+  },
+  {
+    title: "الضرر يزال — Kemudharatan harus dihilangkan",
+    badge: "Kaidah 4",
+    body: `<span class="label">Makna</span>Syariat wajib menghilangkan segala bentuk kemudharatan, baik bagi diri sendiri maupun orang lain.
+    <span class="label">Contoh penerapan</span>Larangan menimbun barang kebutuhan pokok yang merugikan masyarakat. Hak khiyar (pilihan) dalam jual beli untuk menghindari kerugian.`
+  },
+  {
+    title: "العادة محكّمة — Adat kebiasaan dapat dijadikan pertimbangan hukum",
+    badge: "Kaidah 5",
+    body: `<span class="label">Makna</span>Adat atau kebiasaan yang berlaku di masyarakat dapat menjadi salah satu dasar penetapan hukum, selama tidak bertentangan dengan nash.
+    <span class="label">Contoh penerapan</span>Penentuan ukuran mahar dalam pernikahan, standar nafkah, dan jenis pekerjaan rumah tangga yang lazim dilakukan istri.`
+  }
+];
+
+const dataUshul = [
+  {
+    title: "Pengantar maqashid al-syari'ah",
+    badge: "Pondasi",
+    body: `<span class="label">Definisi</span>Maqashid al-syari'ah adalah tujuan-tujuan yang hendak dicapai oleh syariat dalam menetapkan hukum, yaitu mewujudkan kemaslahatan dan menghindarkan kerusakan bagi manusia.
+    <span class="label">Tokoh utama</span>Al-Ghazali (Al-Mustashfa) merumuskan lima pokok dharuriyat. Al-Syatibi (Al-Muwafaqat) mengembangkannya menjadi tingkatan dharuriyat, hajiyat, dan tahsiniyat. Ibn 'Asyur memperluas maqashid ke ranah sosial kontemporer.
+    <span class="label">Tingkatan maslahat</span>Dharuriyat (primer, wajib ada), hajiyat (sekunder, dibutuhkan untuk kemudahan), tahsiniyat (tersier, untuk kesempurnaan akhlak dan keindahan).`
+  },
+  {
+    title: "Hifz al-Din (menjaga agama)",
+    badge: "Dharuriyat 1",
+    body: `<span class="label">Maksud</span>Menjaga kemurnian akidah dan ibadah dari segala bentuk penyimpangan, baik secara individual (dengan menjalankan rukun Islam) maupun kolektif (dengan jihad dan dakwah).
+    <span class="label">Contoh penerapan</span>Disyariatkannya shalat lima waktu, larangan riddah (keluar dari Islam), dan kewajiban menyampaikan dakwah secara benar dan tidak menyesatkan.`
+  },
+  {
+    title: "Hifz al-Nafs (menjaga jiwa)",
+    badge: "Dharuriyat 2",
+    body: `<span class="label">Maksud</span>Menjaga keselamatan jiwa dan raga manusia dari segala bentuk ancaman, kekerasan, dan pembunuhan.
+    <span class="label">Contoh penerapan</span>Hukum qisas bagi pembunuhan, kebolehan berobat, serta larangan menyakiti diri sendiri maupun orang lain.`
+  },
+  {
+    title: "Hifz al-'Aql (menjaga akal)",
+    badge: "Dharuriyat 3",
+    body: `<span class="label">Maksud</span>Menjaga akal dari segala hal yang merusak fungsi berpikirnya, sekaligus mendorong pengembangan dan pendayagunaan akal secara positif.
+    <span class="label">Contoh penerapan klasik</span>Pengharaman khamr dan segala yang memabukkan atau merusak kesadaran.
+    <span class="label">Relevansi kontemporer</span>Sejumlah ulama kontemporer memperluas hifz al-'aql mencakup literasi informasi — yakni kewajiban tabayyun (verifikasi) sebelum menyebarkan informasi, serta tanggung jawab menjaga akal publik dari hoaks dan disinformasi keagamaan di media sosial.
+    <span class="label">Ikhtilaf</span>Sebagian ulama klasik membatasi hifz al-'aql hanya pada larangan konsumsi zat yang merusak akal. Ulama kontemporer seperti Jasser Auda memperluasnya menjadi prinsip sistemik yang mencakup pendidikan dan kebebasan berpikir kritis.`
+  },
+  {
+    title: "Hifz al-Nasl (menjaga keturunan)",
+    badge: "Dharuriyat 4",
+    body: `<span class="label">Maksud</span>Menjaga kemurnian garis keturunan dan kehormatan keluarga melalui institusi pernikahan yang sah.
+    <span class="label">Contoh penerapan</span>Disyariatkannya nikah, larangan zina, dan ketentuan nasab dalam hukum waris.`
+  },
+  {
+    title: "Hifz al-Mal (menjaga harta)",
+    badge: "Dharuriyat 5",
+    body: `<span class="label">Maksud</span>Menjaga hak kepemilikan dan kelangsungan ekonomi umat dari segala bentuk kezaliman, penipuan, dan kerusakan.
+    <span class="label">Contoh penerapan</span>Larangan riba dan pencurian, kewajiban zakat, serta anjuran perniagaan yang adil dan transparan.`
+  }
+];
+
+const dataKaidahUshul = [
+  {
+    title: "الأصل في الأشياء الإباحة — Hukum asal segala sesuatu adalah mubah",
+    badge: "Kaidah Ushul 1",
+    body: `<span class="label">Makna</span>Segala sesuatu pada dasarnya boleh dilakukan kecuali ada dalil yang melarangnya secara tegas.
+    <span class="label">Penerapan</span>Dasar kebolehan berbagai muamalah modern yang tidak ada nashnya secara eksplisit, selama tidak mengandung unsur yang dilarang syariat.`
+  },
+  {
+    title: "الأمر للوجوب — Perintah menunjukkan wajib",
+    badge: "Kaidah Ushul 2",
+    body: `<span class="label">Makna</span>Sighat (bentuk kata) perintah dalam Al-Qur'an dan hadis pada dasarnya menunjukkan hukum wajib, kecuali ada qarinah (indikasi) yang mengalihkannya ke hukum lain.
+    <span class="label">Contoh</span>Perintah "aqimu al-shalat" (dirikanlah shalat) menunjukkan wajib. Perintah berburu setelah ihram selesai (QS. Al-Maidah: 2) berarti mubah karena konteksnya.`
+  },
+  {
+    title: "النهي للتحريم — Larangan menunjukkan haram",
+    badge: "Kaidah Ushul 3",
+    body: `<span class="label">Makna</span>Sighat larangan pada dasarnya menunjukkan hukum haram, kecuali ada qarinah yang mengalihkannya ke makruh atau lainnya.
+    <span class="label">Contoh</span>Larangan memakan riba menunjukkan haram. Larangan shalat di waktu tertentu menunjukkan makruh atau haram khilaf.`
+  },
+  {
+    title: "العام يبقى على عمومه — Nash umum tetap pada keumumannya",
+    badge: "Kaidah Ushul 4",
+    body: `<span class="label">Makna</span>Lafaz umum dalam Al-Qur'an dan hadis berlaku untuk semua yang tercakup di dalamnya, kecuali ada dalil yang mengkhususkannya (takhshish).
+    <span class="label">Contoh</span>Firman Allah tentang keharaman bangkai bersifat umum, kemudian dikhususkan oleh hadis yang menghalalkan bangkai ikan dan belalang.`
+  },
+  {
+    title: "الاجتهاد لا ينقض بالاجتهاد — Ijtihad tidak dibatalkan oleh ijtihad lain",
+    badge: "Kaidah Ushul 5",
+    body: `<span class="label">Makna</span>Hasil ijtihad seorang hakim atau mufti yang telah diputuskan tidak bisa dibatalkan hanya karena ada ijtihad lain yang berbeda, selama keduanya sama-sama memenuhi syarat.
+    <span class="label">Penerapan</span>Keputusan qadhi dalam perkara yang bersifat ijtihadiyah tidak boleh dibatalkan oleh qadhi berikutnya hanya atas dasar perbedaan pendapat.`
+  }
+];
+
+const dataVisual = [
+  {
+    title: "Berapa sebenarnya \"dua kullah\"?",
+    fact: "≈ 216 liter air",
+    desc: "Banyak yang hafal hadits \"jika air mencapai dua kullah, tidak menajiskannya sesuatu\" — tapi jarang yang bisa membayangkan wujudnya. Menurut mazhab Syafi'i, dua kullah setara kubus air berukuran kurang lebih 60×60×60 cm, atau kira-kira seukuran bak mandi sedang.",
+    svg: `<svg viewBox="0 0 240 200" width="220" height="180" role="img" aria-label="Ilustrasi kubus air dua kullah berukuran sekitar 60 sentimeter">
+      <g class="c-blue">
+        <rect x="60" y="60" width="100" height="100" fill="#85B7EB" opacity="0.5" stroke="#185FA5" stroke-width="2"/>
+        <polygon points="60,60 90,40 190,40 160,60" fill="#B5D4F4" stroke="#185FA5" stroke-width="2"/>
+        <polygon points="160,60 190,40 190,140 160,160" fill="#378ADD" opacity="0.6" stroke="#185FA5" stroke-width="2"/>
+        <text x="110" y="180" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#0C447C" font-weight="500">≈ 60 cm × 60 cm × 60 cm</text>
+        <text x="110" y="118" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#042C53">216 liter</text>
+      </g>
+    </svg>`
+  },
+  {
+    title: "Di mana letak lima miqat haji?",
+    fact: "5 titik batas ihram",
+    desc: "Miqat makani adalah batas tempat dimulainya ihram, ditentukan berdasarkan arah kedatangan jamaah: Dzul Hulaifah (arah Madinah), Juhfah (arah Syam/Mesir), Yalamlam (arah Yaman/Indonesia via udara), Qarnul Manazil (arah Najd), dan Dzatu 'Irq (arah Irak).",
+    svg: `<svg viewBox="0 0 260 200" width="240" height="185" role="img" aria-label="Peta sederhana lima titik miqat di sekitar Makkah">
+      <g class="c-teal">
+        <circle cx="130" cy="100" r="14" fill="#1D9E75"/>
+        <text x="130" y="104" text-anchor="middle" font-size="10" fill="#04342C" font-weight="500">Makkah</text>
+      </g>
+      <g font-family="Inter, sans-serif" font-size="10.5" fill="#04342C">
+        <circle cx="130" cy="35" r="6" fill="#5DCAA5"/><text x="130" y="22" text-anchor="middle">Dzul Hulaifah</text>
+        <circle cx="55" cy="70" r="6" fill="#5DCAA5"/><text x="40" y="58" text-anchor="middle">Juhfah</text>
+        <circle cx="200" cy="65" r="6" fill="#5DCAA5"/><text x="210" y="55" text-anchor="middle">Qarnul Manazil</text>
+        <circle cx="60" cy="150" r="6" fill="#5DCAA5"/><text x="55" y="168" text-anchor="middle">Yalamlam</text>
+        <circle cx="205" cy="145" r="6" fill="#5DCAA5"/><text x="210" y="165" text-anchor="middle">Dzatu 'Irq</text>
+      </g>
+    </svg>`
+  },
+  {
+    title: "Seberapa jauh jarak shaf yang sah?",
+    fact: "Tanpa batas tertentu, asal masih terhubung",
+    desc: "Tidak ada ukuran pasti dalam jarak shaf, namun yang menjadi patokan adalah kesinambungan (ittisal) — makmum masih dapat mengikuti gerakan imam, baik melihat langsung maupun mendengar melalui shaf di depannya.",
+    svg: `<svg viewBox="0 0 260 140" width="240" height="130" role="img" aria-label="Ilustrasi shaf shalat berjamaah berurutan di belakang imam">
+      <g class="c-purple">
+        <circle cx="130" cy="25" r="9" fill="#7F77DD"/>
+        <text x="130" y="14" text-anchor="middle" font-size="9.5" fill="#26215C">Imam</text>
+      </g>
+      <g fill="#AFA9EC">
+        <circle cx="70" cy="65" r="7"/><circle cx="100" cy="65" r="7"/><circle cx="130" cy="65" r="7"/><circle cx="160" cy="65" r="7"/><circle cx="190" cy="65" r="7"/>
+        <circle cx="70" cy="105" r="7"/><circle cx="100" cy="105" r="7"/><circle cx="130" cy="105" r="7"/><circle cx="160" cy="105" r="7"/><circle cx="190" cy="105" r="7"/>
+      </g>
+      <text x="130" y="130" text-anchor="middle" font-family="Inter, sans-serif" font-size="10.5" fill="#26215C">Shaf 1 &amp; shaf 2 — makmum tetap terhubung</text>
+    </svg>`
+  },
+  {
+    title: "Batas Tanah Haram itu di mana?",
+    fact: "Bukan sekadar kota Makkah",
+    desc: "Tanah Haram memiliki batas geografis tertentu di sekeliling Makkah — bukan hanya kawasan Masjidil Haram. Di dalam batas ini berlaku hukum khusus, seperti larangan berburu dan menebang pohon, yang tidak berlaku di luar batas tersebut.",
+    svg: `<svg viewBox="0 0 240 180" width="220" height="160" role="img" aria-label="Ilustrasi batas wilayah tanah haram mengelilingi kota Makkah">
+      <g class="c-amber">
+        <ellipse cx="120" cy="95" rx="95" ry="70" fill="#FAC775" opacity="0.35" stroke="#854F0B" stroke-width="2" stroke-dasharray="6 4"/>
+        <circle cx="120" cy="95" r="16" fill="#EF9F27"/>
+        <text x="120" y="99" text-anchor="middle" font-size="10" fill="#412402" font-weight="500">Makkah</text>
+        <text x="120" y="35" text-anchor="middle" font-size="10.5" fill="#633806">Batas tanah haram</text>
+      </g>
+    </svg>`
+  }
+];
+
+const glossaryFikih = [
+  { term: "Thaharah", ar: "طهارة", def: "Bersuci dari hadas dan najis sebagai syarat sahnya ibadah tertentu seperti shalat." },
+  { term: "Hadas", ar: "حدث", def: "Keadaan tidak suci pada diri seseorang yang menghalangi pelaksanaan ibadah tertentu." },
+  { term: "Najis", ar: "نجاسة", def: "Kotoran yang bersifat materi dan menjadikan sesuatu tidak suci secara lahiriah." },
+  { term: "Wudhu", ar: "وضوء", def: "Bersuci dengan air untuk menghilangkan hadas kecil, sebagai syarat sah shalat." },
+  { term: "Tayamum", ar: "تيمم", def: "Bersuci dengan debu yang suci sebagai pengganti wudhu atau mandi ketika tidak ada air atau berhalangan." },
+  { term: "Nisab", ar: "نصاب", def: "Batas minimal harta yang menyebabkan wajibnya zakat." },
+  { term: "Haul", ar: "حول", def: "Masa kepemilikan harta selama satu tahun hijriah sebagai syarat wajib zakat." },
+  { term: "Miqat", ar: "ميقات", def: "Batas waktu dan tempat dimulainya ihram haji atau umrah." },
+  { term: "Ihram", ar: "إحرام", def: "Niat memasuki ibadah haji atau umrah, disertai memakai pakaian ihram dan menghindari larangan-larangannya." },
+  { term: "Rukun", ar: "ركن", def: "Bagian pokok suatu ibadah yang wajib ada; jika ditinggalkan maka ibadah tidak sah." },
+  { term: "Syarat", ar: "شرط", def: "Sesuatu yang harus terpenuhi sebelum ibadah dilaksanakan agar ibadah tersebut sah." },
+  { term: "Sunnah", ar: "سنة", def: "Perbuatan yang dianjurkan dalam ibadah; jika dikerjakan mendapat pahala, jika ditinggalkan tidak berdosa." }
+];
+
+const glossaryUshul = [
+  { term: "Dharuriyat", ar: "ضروريات", def: "Kebutuhan primer yang wajib dipelihara; jika hilang akan merusak tatanan kehidupan." },
+  { term: "Hajiyat", ar: "حاجيات", def: "Kebutuhan sekunder yang meringankan kesulitan dalam menjalani kehidupan." },
+  { term: "Tahsiniyat", ar: "تحسينيات", def: "Kebutuhan tersier untuk kesempurnaan akhlak, adab, dan keindahan." },
+  { term: "Tabayyun", ar: "تبين", def: "Memastikan kebenaran suatu berita sebelum menerima atau menyebarkannya." },
+  { term: "Ikhtilaf", ar: "اختلاف", def: "Perbedaan pendapat ulama dalam suatu masalah hukum fikih." },
+  { term: "Istinbath", ar: "استنباط", def: "Proses penggalian atau penetapan hukum dari sumber-sumbernya." },
+  { term: "Qiyas", ar: "قياس", def: "Menyamakan hukum suatu perkara baru dengan perkara yang sudah ada nashnya karena kesamaan illat (sebab hukum)." },
+  { term: "Ijma'", ar: "إجماع", def: "Kesepakatan para mujtahid dari umat Islam pada suatu masa terhadap hukum suatu permasalahan." },
+  { term: "Illat", ar: "علة", def: "Sebab atau alasan hukum yang menjadi dasar penetapan suatu ketentuan syariat." },
+  { term: "Ijtihad", ar: "اجتهاد", def: "Pengerahan segenap kemampuan oleh seorang mujtahid untuk menghasilkan hukum syariat dari dalil-dalilnya." },
+  { term: "Rukhshah", ar: "رخصة", def: "Keringanan hukum yang diberikan syariat dalam kondisi tertentu yang memberatkan." },
+  { term: "Qaulan Sadidan", ar: "قولاً سديداً", def: "Perkataan yang benar dan tepat, salah satu prinsip komunikasi dalam Al-Qur'an." }
+];
+
+// ===================== RENDER =====================
+function renderDetailDasar(key){
+  const data = dataDasar[key];
+  const cont = document.getElementById('detail-dasar');
+  if(!data){ cont.innerHTML = ''; return; }
+  cont.innerHTML = data.items.map(it => `
+    <div class="materi-card">
+      <span class="tag">${data.tag}</span>
+      <h3>${it.h}</h3>
+      ${it.dalil ? `<div class="dalil">${it.dalil}</div><div class="dalil-terjemah">${it.terjemah}</div>` : ''}
+      <p>${it.teks}</p>
+      ${it.ikhtilaf ? `<div class="ikhtilaf"><span class="madz">Catatan ikhtilaf:</span> ${it.ikhtilaf}</div>` : ''}
+    </div>
+  `).join('');
+  cont.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
+
+document.querySelectorAll('#bab-grid-dasar .bab-card').forEach(card=>{
+  card.addEventListener('click', ()=> renderDetailDasar(card.dataset.bab));
+});
+
+function renderAccordion(containerId, data, openFirst){
+  const cont = document.getElementById(containerId);
+  cont.innerHTML = data.map((item, i) => `
+    <div class="accordion-item ${openFirst && i===0 ? 'open':''}" data-idx="${i}">
+      <div class="accordion-head">
+        <h4>${item.title}</h4>
+        <i class="ti ti-chevron-down"></i>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-content">${item.body}</div>
+      </div>
+    </div>
+  `).join('');
+  cont.querySelectorAll('.accordion-head').forEach(head=>{
+    head.addEventListener('click', ()=>{
+      head.parentElement.classList.toggle('open');
+    });
+  });
+}
+
+function renderVisual(){
+  const cont = document.getElementById('visual-grid');
+  cont.innerHTML = dataVisual.map(v => `
+    <div class="visual-card">
+      <div class="visual-img">${v.svg}</div>
+      <div class="visual-body">
+        <span class="quick-fact">${v.fact}</span>
+        <h3>${v.title}</h3>
+        <p>${v.desc}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderGlossary(containerId, data){
+  const cont = document.getElementById(containerId);
+  cont.innerHTML = data.map(g => `
+    <div class="gloss-item">
+      <div class="term">${g.term}<span class="ar arabic">${g.ar}</span></div>
+      <div class="def">${g.def}</div>
+    </div>
+  `).join('');
+}
+
+// search dasar
+document.getElementById('search-dasar').addEventListener('input', (e)=>{
+  const q = e.target.value.toLowerCase();
+  document.querySelectorAll('#bab-grid-dasar .bab-card').forEach(card=>{
+    const txt = card.textContent.toLowerCase();
+    card.style.display = txt.includes(q) ? '' : 'none';
+  });
+});
+
+// nav tabs
+document.querySelectorAll('.nav-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+  });
+});
+
+renderAccordion('accordion-kaidah-fikih', dataKaidahFikih, true);
+renderAccordion('accordion-ushul', dataUshul, true);
+renderAccordion('accordion-kaidah-ushul', dataKaidahUshul, true);
+renderVisual();
+renderGlossary('glossary-grid-fikih', glossaryFikih);
+renderGlossary('glossary-grid-ushul', glossaryUshul);
+
+// Suggestion box logic
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSee0T8IMiAHFFfIUEnIeeuNqr0uvU70z7ruajEk93NLwWJh8A/viewform";
+const fabBtn = document.getElementById('suggest-fab-btn');
+const overlay = document.getElementById('suggest-overlay');
+fabBtn.addEventListener('click', ()=> overlay.classList.add('open'));
+document.getElementById('suggest-cancel').addEventListener('click', ()=> overlay.classList.remove('open'));
+overlay.addEventListener('click', (e)=>{ if(e.target === overlay) overlay.classList.remove('open'); });
+document.getElementById('suggest-go').addEventListener('click', ()=>{
+  window.open(GOOGLE_FORM_URL, '_blank');
+  overlay.classList.remove('open');
+});
+</script>
+</body>
+</html>
