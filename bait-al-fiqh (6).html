@@ -572,27 +572,10 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
 </script>
   <!-- TEMPEL KODE YANG SUDAH FIX INI DI PALING BAWAH FILE HTML ANDA -->
 <style>
-  /* 1. Mengatur dasar semua link menu agar siap diberi efek */
-  nav a, 
-  .navbar a, 
-  [class*="menu"] a, 
-  [class*="nav"] a {
-    position: relative !important;
-    display: inline-block !important;
-    padding: 12px 20px !important; /* Mengatur ukuran kotak agar pas */
-    color: #a0aec0 !important;     /* Warna teks abu-abu saat diam */
-    text-decoration: none !important;
-    transition: all 0.25s ease-in-out !important; /* Efek transisi halus */
-    border-bottom: 3px solid transparent !important; /* Garis bawah awal transparan */
-  }
-  /* 2. EFEK HOVER: Saat menu disentuh kursor / jari */
-  nav a:hover, 
-  .navbar a:hover, 
-  [class*="menu"] a:hover, 
-  [class*="nav"] a:hover {
-    background-color: #1a2530 !important; /* Latar belakang kotak menyala agak terang */
-    color: #dfa135 !important;            /* Warna teks berubah menjadi emas */
-    border-bottom: 3px solid #dfa135 !important; /* Muncul garis bawah emas */
+  /* KODE PAMUNGKAS: Berlaku untuk semua jenis elemen menu (tombol, list, teks) */
+  *:hover {
+    background-color: #e2e8f0 !important;
+    transition: none !important;
   }
 </style>
 </body>
