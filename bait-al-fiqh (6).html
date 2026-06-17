@@ -616,51 +616,59 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
   }
 </style>
 <style>
-  /* --- 1. LATAR BELAKANG GRADASI BIRU --- */
+  /* --- 1. KODE AGRESIF: MEMAKSA SELURUH LAPISAN WEB BERUBAH JADI GRADASI BIRU ELEKTRIK --- */
+  html, 
   body, 
-  .main-container, 
-  [class*="wrapper"], 
-  [class*="content"] {
-    background-image: linear-gradient(180deg, #001eff 0%, #0055ff 50%, #00bfff 100%) !important;
-    background-attachment: fixed !important;
+  div[class*="wrap"], 
+  div[class*="container"], 
+  div[class*="main"], 
+  div[class*="page"], 
+  section, 
+  header {
+    background-color: transparent !important; /* Menghapus warna gelap lama agar tembus pandang */
+    background-image: linear-gradient(135deg, #0022ff 0%, #0055ff 45%, #00aaff 100%) !important; /* Biru Gradasi Elektrik */
+    background-attachment: fixed !important; /* Gradasi mengunci di layar, tidak ikut tergulung saat di-scroll */
     background-size: cover !important;
   }
 
-  /* --- 2. WARNA KONTEN / TEKS PEMBANDING AGAR JELAS --- */
+  /* --- 2. WARNA KONTEN / TEKS PEMBANDING KONTRAST TINGGI --- */
   /* Judul Utama (Contoh: "Fikih Dasar Keseharian") dipaksa Putih Bersih */
   h1, h2, h3, .main-title, [class*="title"] {
     color: #ffffff !important;
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5) !important; /* Bayangan hitam agar teks menonjol */
+    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6) !important; /* Bayangan hitam agar teks sangat tegas menonjol */
   }
 
-  /* Teks Deskripsi / Materi dipaksa Putih Susu terang agar nyaman dibaca */
+  /* Teks Deskripsi / Materi dipaksa Putih Susu Terang agar sangat kontras */
   p, span:not(.nav-tab), .description, [class*="text"] {
     color: #f7fafc !important;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4) !important;
   }
 
   /* Label Kecil Atas (Contoh: "UNTUK MASYARAKAT UMUM") dipaksa Kuning Emas Cerah */
   .sub-title, [class*="meta"], [class*="tag"] {
     color: #ffd700 !important; 
     font-weight: bold !important;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5) !important;
   }
 
-  /* Kolom Kotak Pencarian / Kolom Materi Bawah agar Kontras */
+  /* Kolom Kotak Pencarian / Kolom Materi Bawah agar Mewah bergaya Kaca Transparan */
   input, .search-bar, [class*="card"], [class*="box"] {
-    background-color: rgba(255, 255, 255, 0.15) !important; /* Kotak transparan putih kaca */
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Transparan efek kaca transparan */
     border: 1px solid rgba(255, 255, 255, 0.3) !important;
     color: #ffffff !important;
-    backdrop-filter: blur(10px) !important; /* Efek blur estetik di dalam kotak */
+    backdrop-filter: blur(10px) !important; /* Efek blur estetik mewah di dalam kotak */
   }
   
-  /* Warna teks di dalam kolom input/pencarian */
+  /* Warna teks petunjuk di dalam kolom input/pencarian */
   input::placeholder {
     color: #e2e8f0 !important;
   }
 
-  /* --- 3. KODE MENU NAVIGASI ANDA --- */
+  /* --- 3. KODE MENU NAVIGASI NAV-TAB ANDA --- */
   .nav-tabs {
     display: flex !important;
     align-items: flex-end !important; 
+    border-bottom: none !important;
   }
   
   .nav-tabs .nav-tab {
