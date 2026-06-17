@@ -615,51 +615,82 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
     color: #ffffff !important;
   }
 </style>
-  <style>
-    /* 1. MENGUBAH WARNA LATAR BELAKANG WEB JADI BIRU CERAH SEPERTI GAMBAR */
-    body, 
-    .main-container, 
-    [class*="wrapper"], 
-    [class*="content"] {
-      background-color: #00bfff !important; 
-    }
+<style>
+  /* --- 1. LATAR BELAKANG GRADASI BIRU --- */
+  body, 
+  .main-container, 
+  [class*="wrapper"], 
+  [class*="content"] {
+    background-image: linear-gradient(180deg, #001eff 0%, #0055ff 50%, #00bfff 100%) !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+  }
 
-    /* 2. KODE MENU NAVIGASI (KOTAK BIRU, TEKS PUTIH, LENGKUNG ATAS + SHADOW) */
-    .nav-tabs {
-      display: flex !important;
-      align-items: flex-end !important; 
-    }
-    
-    .nav-tabs .nav-tab {
-      padding: 12px 20px !important;
-      cursor: pointer !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 8px !important;
-      position: relative !important;
-      margin-bottom: -1px !important; 
-    }
-    
-    .nav-tabs .nav-tab:hover,
-    .nav-tabs .nav-tab.active {
-      background-color: #2b72b9 !important; 
-      color: #ffffff !important;             
-      transition: none !important;            
-      border-radius: 6px 6px 0px 0px !important; 
-      border-bottom: none !important; 
-      box-shadow: 0px -5px 12px rgba(0, 0, 0, 0.3), 
-                  5px 0px 8px rgba(0, 0, 0, 0.15), 
-                  -5px 0px 8px rgba(0, 0, 0, 0.15) !important;
-      z-index: 10 !important; 
-    }
-    
-    .nav-tabs .nav-tab:hover i,
-    .nav-tabs .nav-tab.active i {
-      color: #ffffff !important;
-    }
-  </style>
+  /* --- 2. WARNA KONTEN / TEKS PEMBANDING AGAR JELAS --- */
+  /* Judul Utama (Contoh: "Fikih Dasar Keseharian") dipaksa Putih Bersih */
+  h1, h2, h3, .main-title, [class*="title"] {
+    color: #ffffff !important;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5) !important; /* Bayangan hitam agar teks menonjol */
+  }
 
-</body>
-</html>
+  /* Teks Deskripsi / Materi dipaksa Putih Susu terang agar nyaman dibaca */
+  p, span:not(.nav-tab), .description, [class*="text"] {
+    color: #f7fafc !important;
+  }
+
+  /* Label Kecil Atas (Contoh: "UNTUK MASYARAKAT UMUM") dipaksa Kuning Emas Cerah */
+  .sub-title, [class*="meta"], [class*="tag"] {
+    color: #ffd700 !important; 
+    font-weight: bold !important;
+  }
+
+  /* Kolom Kotak Pencarian / Kolom Materi Bawah agar Kontras */
+  input, .search-bar, [class*="card"], [class*="box"] {
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Kotak transparan putih kaca */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    backdrop-filter: blur(10px) !important; /* Efek blur estetik di dalam kotak */
+  }
+  
+  /* Warna teks di dalam kolom input/pencarian */
+  input::placeholder {
+    color: #e2e8f0 !important;
+  }
+
+  /* --- 3. KODE MENU NAVIGASI ANDA --- */
+  .nav-tabs {
+    display: flex !important;
+    align-items: flex-end !important; 
+  }
+  
+  .nav-tabs .nav-tab {
+    padding: 12px 20px !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    position: relative !important;
+    margin-bottom: -1px !important; 
+    color: #e2e8f0 !important; /* Warna menu saat diam (Putih keabu-abuan) */
+  }
+  
+  .nav-tabs .nav-tab:hover,
+  .nav-tabs .nav-tab.active {
+    background-color: #2b72b9 !important; /* Kotak menyala biru kontras */
+    color: #ffffff !important;             
+    transition: none !important;            
+    border-radius: 6px 6px 0px 0px !important; 
+    border-bottom: none !important; 
+    box-shadow: 0px -5px 12px rgba(0, 0, 0, 0.3), 
+                5px 0px 8px rgba(0, 0, 0, 0.15), 
+                -5px 0px 8px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10 !important; 
+  }
+  
+  .nav-tabs .nav-tab:hover i,
+  .nav-tabs .nav-tab.active i {
+    color: #ffffff !important;
+  }
+</style>
 </body>
 </html>
