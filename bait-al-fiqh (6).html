@@ -244,7 +244,7 @@ main{max-width:980px;margin:0 auto;padding:40px 24px 80px;}
     <div class="nav-tab" data-panel="glosarium-ushul"><i class="ti ti-list-search"></i>Glosarium Ushul Fikih</div>
   </div>
 </div>
-
+  
 <main>
   <!-- FIKIH -->
   <section class="panel active" id="panel-dasar">
@@ -572,10 +572,19 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
 </script>
   <!-- TEMPEL KODE YANG SUDAH FIX INI DI PALING BAWAH FILE HTML ANDA -->
 <style>
-  /* KODE PAMUNGKAS: Berlaku untuk semua jenis elemen menu (tombol, list, teks) */
-  *:hover {
-    background-color: #e2e8f0 !important;
-    transition: none !important;
+  /* Mengatur jarak kotak menu saat diam agar tidak terlalu rapat */
+  .nav-tabs .nav-tab {
+    padding: 10px 15px !important;
+    cursor: pointer !important;
+  }
+
+  /* EFEK HOVER FIX: Langsung menyala cerah saat kursor menyentuh menu */
+  .nav-tabs .nav-tab:hover {
+    background-color: #e2e8f0 !important; /* Latar belakang kotak langsung cerah */
+    color: inherit !important;             /* Warna teks & ikon tetap warna asli web Anda */
+    transition: none !important;            /* Efek langsung menyala instan tanpa animasi lambat */
+    border-radius: 4px !important;         /* Membuat sudut kotak sedikit melengkung rapi */
+    border-bottom: none !important;        /* Menghilangkan garis bawah emas bawaan template */
   }
 </style>
 </body>
