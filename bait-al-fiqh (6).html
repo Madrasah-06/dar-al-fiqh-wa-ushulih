@@ -575,7 +575,7 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
   /* 1. Mengatur dasar struktur menu navigasi asli Anda agar rapi sejajar */
   .nav-tabs {
     display: flex !important;
-    align-items: flex-end !important; /* Memaksa semua kotak menempel rata di dasar garis bawah */
+    align-items: flex-end !important; 
   }
 
   .nav-tabs .nav-tab {
@@ -585,31 +585,33 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
     align-items: center !important;
     gap: 8px !important;
     position: relative !important;
-    margin-bottom: -1px !important; /* Trik agar kotak biru pas menempel di atas garis panjang saat disentuh */
+    margin-bottom: -1px !important; 
   }
 
-  /* 2. EFEK HOVER: Kotak Biru Cerah, Teks Putih, Lengkung Atas + Shadow Keren */
-  .nav-tabs .nav-tab:hover {
-    background-color: #2b72b9 !important; /* Warna biru cerah dari gambar tombol sebelumnya */
-    color: #ffffff !important;             /* Tulisan teks dipaksa putih bersih agar jelas terbaca */
-    transition: none !important;            /* Efek langsung menyala instan tanpa lambat */
+  /* 2. EFEK HOVER & ACTIVE: Kotak Biru Cerah + Shadow, TANPA GARIS BAWAH COKLAT */
+  .nav-tabs .nav-tab:hover,
+  .nav-tabs .nav-tab.active {
+    background-color: #2b72b9 !important; /* Warna biru cerah */
+    color: #ffffff !important;             /* Teks putih bersih */
+    transition: none !important;            
     
-    /* Bentuk kotak melengkung halus di sudut kiri-atas dan kanan-atas saja */
+    /* Bentuk kotak melengkung di sudut atas saja */
     border-radius: 6px 6px 0px 0px !important; 
     
-    /* Garis bawah emas tipis setinggi 3px pembatas kotak dengan garis panjang */
-    border-bottom: 3px solid #dfa135 !important; 
+    /* MENGHILANGKAN GARIS BAWAH COKLAT/EMAS SECARA TOTAL */
+    border-bottom: none !important; 
     
-    /* Efek bayangan (shadow) halus menyebar ke arah atas, kanan, dan kiri kotak */
+    /* Efek cahaya shadow tetap muncul di kiri, kanan, dan atas */
     box-shadow: 0px -5px 12px rgba(0, 0, 0, 0.3), 
                 5px 0px 8px rgba(0, 0, 0, 0.15), 
                 -5px 0px 8px rgba(0, 0, 0, 0.15) !important;
     
-    z-index: 10 !important; /* Memastikan kotak dan bayangannya berdiri tegak di atas elemen lain */
+    z-index: 10 !important; 
   }
 
-  /* Memastikan ikon (jika ada) di dalam menu ikut berubah putih bersih saat disentuh */
-  .nav-tabs .nav-tab:hover i {
+  /* Memastikan ikon tetap putih bersih saat disentuh atau setelah dipencet */
+  .nav-tabs .nav-tab:hover i,
+  .nav-tabs .nav-tab.active i {
     color: #ffffff !important;
   }
 </style>
