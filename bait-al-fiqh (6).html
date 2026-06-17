@@ -835,5 +835,90 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
   }
   .nav-tabs .nav-tab:hover i, .nav-tabs .nav-tab.active i { color: #ffffff !important; }
 </style>
+  <style>
+  /* --- 1. LATAR BELAKANG UTAMA: GRADASI BIRU + FOTO KIAI MENYATU INDAH --- */
+  html, body {
+    /* Menggabungkan foto kiai dan gradasi biru agar menyatu transparan */
+    background-image: 
+      linear-gradient(180deg, rgba(0, 34, 255, 0.85) 0%, rgba(0, 85, 255, 0.75) 50%, rgba(0, 191, 255, 0.6) 100%),
+      url('kiai.jpg') !important; /* Ganti kiai.jpg sesuai nama file foto Anda */
+    
+    background-blend-mode: multiply !important; /* Membuat latar putih foto kiai otomatis menyerap warna biru */
+    background-attachment: fixed !important; /* Mengunci background agar tidak ikut tergulung saat di-scroll */
+    background-size: cover !important;
+    background-position: center top !important; /* Memastikan wajah para kiai tetap pas di posisi atas */
+    margin: 0;
+    padding: 0;
+  }
+
+  /* --- 2. PEMBERSIH KOTAK: MENGHILANGKAN KOTAK-KOTAK BERGARIS YANG TIDAK RAPI --- */
+  .hero-section,
+  [class*="hero"],
+  [class*="header-wrap"],
+  .main-title,
+  [class*="title"],
+  h1, h2, h3, p, span, div {
+    background-color: transparent !important; 
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* --- 3. WADAH AREA TENGAH AGAR TEKS TETAP NYAMAN DIBACA --- */
+  .nav-wrap ~ div,
+  main,
+  [role="main"] {
+    background-color: rgba(255, 255, 255, 0.05) !important; /* Kaca transparan super tipis */
+    backdrop-filter: blur(4px) !important; 
+    border-radius: 12px !important;
+    padding: 30px !important;
+    max-width: 1200px !important;
+    margin: 20px auto !important;
+  }
+
+  /* --- 4. PENATAAN WARNA HURUF DENGAN KONTRAS TINGGI --- */
+  h1, h2, .main-title, [class*="title"] {
+    color: #ffffff !important;
+    /* Bayangan hitam tebal agar tulisan putih tidak berbaur dengan sorban/baju kiai */
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9), 0px 0px 20px rgba(0, 0, 0, 0.7) !important; 
+    font-weight: 700 !important;
+    margin-bottom: 15px !important;
+  }
+
+  p, .description, [class*="text"] {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.9) !important;
+    font-size: 1.15rem !important;
+  }
+
+  /* Angka Statistik (5, 8, 4) & Label Keterangannya */
+  .stats-number, [class*="stat"] {
+    color: #ffd700 !important; /* Kuning emas cerah agar sangat kontras */
+    font-size: 3rem !important;
+    font-weight: bold !important;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .stats-label, [class*="label"] {
+    color: #ffffff !important;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9) !important;
+    font-size: 1rem !important;
+  }
+
+  /* --- 5. KODE MENU NAVIGASI NAV-TAB ANDA --- */
+  .nav-tabs { display: flex !important; align-items: flex-end !important; border-bottom: none !important; background: transparent !important; }
+  .nav-tabs .nav-tab {
+    padding: 12px 20px !important; cursor: pointer !important; display: inline-flex !important;
+    align-items: center !important; gap: 8px !important; position: relative !important; margin-bottom: -1px !important; 
+    color: #e2e8f0 !important; background: transparent !important;
+  }
+  .nav-tabs .nav-tab:hover, .nav-tabs .nav-tab.active {
+    background-color: #2b72b9 !important; color: #ffffff !important; transition: none !important;            
+    border-radius: 6px 6px 0px 0px !important; border-bottom: none !important; 
+    box-shadow: 0px -5px 12px rgba(0, 0, 0, 0.3), 5px 0px 8px rgba(0, 0, 0, 0.15), -5px 0px 8px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10 !important; 
+  }
+  .nav-tabs .nav-tab:hover i, .nav-tabs .nav-tab.active i { color: #ffffff !important; }
+</style>
 </body>
 </html>
