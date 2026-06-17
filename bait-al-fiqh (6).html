@@ -572,19 +572,27 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
 </script>
   <!-- TEMPEL KODE YANG SUDAH FIX INI DI PALING BAWAH FILE HTML ANDA -->
 <style>
-  /* Mengatur jarak kotak menu saat diam agar tidak terlalu rapat */
+  /* Mengatur jarak kotak menu saat posisi diam agar pas */
   .nav-tabs .nav-tab {
-    padding: 10px 15px !important;
+    padding: 10px 20px !important;
     cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important; /* Jarak antara ikon dan teks */
   }
 
-  /* EFEK HOVER FIX: Langsung menyala cerah saat kursor menyentuh menu */
+  /* EFEK HOVER FIX: Langsung menyala biru cerah & tulisan putih jelas */
   .nav-tabs .nav-tab:hover {
-    background-color: #e2e8f0 !important; /* Latar belakang kotak langsung cerah */
-    color: inherit !important;             /* Warna teks & ikon tetap warna asli web Anda */
-    transition: none !important;            /* Efek langsung menyala instan tanpa animasi lambat */
-    border-radius: 4px !important;         /* Membuat sudut kotak sedikit melengkung rapi */
-    border-bottom: none !important;        /* Menghilangkan garis bawah emas bawaan template */
+    background-color: #2b72b9 !important; /* Biru cerah sesuai gambar tombol Anda */
+    color: #ffffff !important;             /* Teks & ikon berubah putih bersih agar terlihat jelas */
+    transition: none !important;            /* Efek langsung menyala instan */
+    border-radius: 50px !important;         /* Bentuk bulat lonjong mirip tombol Anda */
+    border-bottom: none !important;        /* Menghilangkan garis bawah bawaan template */
+  }
+
+  /* Memastikan ikon di dalam menu ikut berubah menjadi putih saat disentuh */
+  .nav-tabs .nav-tab:hover i {
+    color: #ffffff !important;
   }
 </style>
 </body>
