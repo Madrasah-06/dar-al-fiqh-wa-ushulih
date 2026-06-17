@@ -572,25 +572,43 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
 </script>
   <!-- TEMPEL KODE YANG SUDAH FIX INI DI PALING BAWAH FILE HTML ANDA -->
 <style>
-  /* Mengatur jarak kotak menu saat posisi diam agar pas */
+  /* 1. Mengatur dasar struktur menu navigasi asli Anda agar rapi sejajar */
+  .nav-tabs {
+    display: flex !important;
+    align-items: flex-end !important; /* Memaksa semua kotak menempel rata di dasar garis bawah */
+  }
+
   .nav-tabs .nav-tab {
-    padding: 10px 20px !important;
+    padding: 12px 20px !important;
     cursor: pointer !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 8px !important; /* Jarak antara ikon dan teks */
+    gap: 8px !important;
+    position: relative !important;
+    margin-bottom: -1px !important; /* Trik agar kotak biru pas menempel di atas garis panjang saat disentuh */
   }
 
-  /* EFEK HOVER FIX: Langsung menyala biru cerah & tulisan putih jelas */
+  /* 2. EFEK HOVER: Kotak Biru Cerah, Teks Putih, Lengkung Atas + Shadow Keren */
   .nav-tabs .nav-tab:hover {
-    background-color: #2b72b9 !important; /* Biru cerah sesuai gambar tombol Anda */
-    color: #ffffff !important;             /* Teks & ikon berubah putih bersih agar terlihat jelas */
-    transition: none !important;            /* Efek langsung menyala instan */
-    border-radius: 50px !important;         /* Bentuk bulat lonjong mirip tombol Anda */
-    border-bottom: none !important;        /* Menghilangkan garis bawah bawaan template */
+    background-color: #2b72b9 !important; /* Warna biru cerah dari gambar tombol sebelumnya */
+    color: #ffffff !important;             /* Tulisan teks dipaksa putih bersih agar jelas terbaca */
+    transition: none !important;            /* Efek langsung menyala instan tanpa lambat */
+    
+    /* Bentuk kotak melengkung halus di sudut kiri-atas dan kanan-atas saja */
+    border-radius: 6px 6px 0px 0px !important; 
+    
+    /* Garis bawah emas tipis setinggi 3px pembatas kotak dengan garis panjang */
+    border-bottom: 3px solid #dfa135 !important; 
+    
+    /* Efek bayangan (shadow) halus menyebar ke arah atas, kanan, dan kiri kotak */
+    box-shadow: 0px -5px 12px rgba(0, 0, 0, 0.3), 
+                5px 0px 8px rgba(0, 0, 0, 0.15), 
+                -5px 0px 8px rgba(0, 0, 0, 0.15) !important;
+    
+    z-index: 10 !important; /* Memastikan kotak dan bayangannya berdiri tegak di atas elemen lain */
   }
 
-  /* Memastikan ikon di dalam menu ikut berubah menjadi putih saat disentuh */
+  /* Memastikan ikon (jika ada) di dalam menu ikut berubah putih bersih saat disentuh */
   .nav-tabs .nav-tab:hover i {
     color: #ffffff !important;
   }
