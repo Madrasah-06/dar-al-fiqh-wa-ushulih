@@ -700,5 +700,140 @@ document.getElementById('suggest-go').addEventListener('click',()=>{window.open(
     color: #ffffff !important;
   }
 </style>
+  <style>
+  /* --- 1. KODE KHUSUS: MEMBUAT FOTO KIAI UTUH & BERLATAR GRADASI BIRU ELEKTAN --- */
+  /* Menargetkan bagian paling atas web yang berisi gambar para kiai */
+  header, 
+  .hero-section, 
+  [class*="hero"], 
+  [class*="header-wrap"],
+  div[data-panel="dasar"] ~ div { 
+    /* Menggabungkan gradasi biru transparan agar foto kiai di belakangnya menembus keluar dengan jelas */
+    background-image: linear-gradient(180deg, rgba(0, 30, 255, 0.75) 0%, rgba(0, 85, 255, 0.65) 50%, rgba(0, 191, 255, 0.5) 100%) !important;
+    background-blend-mode: overlay !important; /* Mencampur warna biru langsung ke dalam foto kiai agar menyatu indah */
+    background-attachment: fixed !important;
+    background-size: cover !important;
+  }
+
+  /* --- 2. WARNA KONTEN AGAR TULISAN ARAB & INDONESIA SANGAT JELAS --- */
+  /* Judul Utama "Dār al-Fiqh wa Ushūlih" & Teks Arab */
+  h1, h2, .main-title, [class*="title"], 
+  h1 + p, .hero-section p {
+    color: #ffffff !important; /* Putih bersih maksimal */
+    /* Memberikan bayangan hitam tebal di belakang huruf agar teks tidak tenggelam oleh foto */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0px 0px 15px rgba(0, 0, 0, 0.6) !important; 
+    font-weight: 700 !important;
+  }
+
+  /* Teks Arab "دار الفقه وأصوله" agar lebih besar dan menonjol */
+  h1 + p, [style*="rtl"] {
+    font-size: 1.8rem !important;
+    margin-top: 10px !important;
+    margin-bottom: 15px !important;
+  }
+
+  /* Angka Statistik (5, 8, 4) & Teks di Bawahnya (Bab Fikih Dasar, dll) */
+  .stats-number, [class*="stat"] {
+    color: #ffd700 !important; /* Angka diubah menjadi kuning emas menyala agar membanding warna biru */
+    font-size: 2.5rem !important;
+    font-weight: bold !important;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7) !important;
+  }
+  
+  .stats-label, [class*="label"] {
+    color: #ffffff !important; /* Teks keterangan angka tetap putih terang */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  /* Label Atas "MATERI FIKIH DAN USHUL FIKIH" */
+  .sub-title, [class*="meta"], [class*="tag"] {
+    color: #ffea79 !important; /* Kuning terang benderang */
+    font-weight: 800 !important;
+    letter-spacing: 2px !important; /* Jarak antar huruf agar rapi */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9) !important;
+  }
+</style>
+<style>
+  /* --- 1. LATAR BELAKANG GRADASI BIRU ELEKTAN --- */
+  html, body, div[class*="wrap"], div[class*="container"], div[class*="main"], div[class*="page"], section, header {
+    background-color: transparent !important; 
+    background-image: linear-gradient(135deg, #0022ff 0%, #0055ff 45%, #00aaff 100%) !important; 
+    background-attachment: fixed !important; 
+    background-size: cover !important;
+  }
+
+  /* --- 2. KODE BARU: MENYELARASKAN KOTAK POIN MATERI & INPUT (EFEK KACA KONTRAST) --- */
+  /* Menargetkan semua jenis kotak kartu materi, box artikel, dan kolom input */
+  input, 
+  .search-bar, 
+  div[class*="card"], 
+  div[class*="box"], 
+  div[class*="panel-materi"], 
+  div[class*="grid"] > div {
+    /* Mengubah latar kotak menjadi putih transparan super lembut agar akur dengan warna biru */
+    background-color: rgba(255, 255, 255, 0.12) !important; 
+    
+    /* Memberikan garis tepi tipis putih transparan agar kotak terlihat tegas dan mewah */
+    border: 1px solid rgba(255, 255, 255, 0.25) !important; 
+    
+    /* Trik Utama: Memberikan efek blur/buram pada latar belakang di dalam kotak (efek kaca) */
+    backdrop-filter: blur(12px) !important; 
+    -webkit-backdrop-filter: blur(12px) !important;
+    
+    /* Membuat sudut-sudut kotak melengkung halus agar serasi dengan menu nav-tab atas */
+    border-radius: 12px !important; 
+    
+    /* Memberikan bayangan hitam tipis lembut di bawah kotak agar terlihat timbul */
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2) !important; 
+    padding: 20px !important; /* Memastikan jarak teks di dalam kotak longgar dan rapi */
+    transition: all 0.2s ease-in-out !important;
+  }
+
+  /* EFEK HOVER KOTAK: Saat kotak materi disentuh, cahayanya akan sedikit menebal indah */
+  div[class*="card"]:hover, 
+  div[class*="box"]:hover, 
+  div[class*="panel-materi"]:hover {
+    background-color: rgba(255, 255, 255, 0.18) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    transform: translateY(-2px) !important; /* Efek sedikit naik ke atas saat disentuh kursor */
+  }
+
+  /* --- 3. WARNA TEKS PEMBANDING KONTRAST TINGGI --- */
+  h1, h2, h3, .main-title, [class*="title"] {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0px 0px 15px rgba(0, 0, 0, 0.6) !important; 
+    font-weight: 700 !important;
+  }
+
+  p, span:not(.nav-tab), .description, [class*="text"], label {
+    color: #f7fafc !important;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .sub-title, [class*="meta"], [class*="tag"], .stats-number, [class*="stat"] {
+    color: #ffd700 !important; 
+    font-weight: bold !important;
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6) !important;
+  }
+
+  input::placeholder {
+    color: #cbd5e1 !important; /* Warna teks contoh di kolom cari agar abu-abu terang terbaca */
+  }
+
+  /* --- 4. KODE MENU NAVIGASI NAV-TAB ANDA --- */
+  .nav-tabs { display: flex !important; align-items: flex-end !important; border-bottom: none !important; }
+  .nav-tabs .nav-tab {
+    padding: 12px 20px !important; cursor: pointer !important; display: inline-flex !important;
+    align-items: center !important; gap: 8px !important; position: relative !important; margin-bottom: -1px !important; 
+    color: #e2e8f0 !important;
+  }
+  .nav-tabs .nav-tab:hover, .nav-tabs .nav-tab.active {
+    background-color: #2b72b9 !important; color: #ffffff !important; transition: none !important;            
+    border-radius: 6px 6px 0px 0px !important; border-bottom: none !important; 
+    box-shadow: 0px -5px 12px rgba(0, 0, 0, 0.3), 5px 0px 8px rgba(0, 0, 0, 0.15), -5px 0px 8px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10 !important; 
+  }
+  .nav-tabs .nav-tab:hover i, .nav-tabs .nav-tab.active i { color: #ffffff !important; }
+</style>
 </body>
 </html>
