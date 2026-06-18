@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dār al-Fiqh wa Ushūlih</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, #0046eb 0%, #0066ff 40%, #0084ff 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            color: white;
+        }
+
+        /* ==================== 1. BAGIAN ATAS (HERO BOX) ==================== */
+        .main-container {
+            width: 100%;
+            max-width: 650px;
+            background: linear-gradient(180deg, #0055ff 0%, #008cff 100%);
+            margin-top: 40px;
+            margin-bottom: 40px;
+            border-top: 4px solid #00c3ff;
+            border-bottom: 4px solid #00c3ff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            text-align: center;
+        }
+
+        .top-tag {
+            background-color: rgba(0, 0, 0, 0.15);
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ffcc00;
+            padding: 8px 0;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-family: 'Georgia', serif;
+            font-size: 3.2rem;
+            font-weight: normal;
+            padding: 20px 10px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.4);
+        }
+
+        .arabic-box {
+            background: linear-gradient(90deg, transparent, #00a2ff, transparent);
+            font-size: 2.2rem;
+            padding: 15px 0;
+            color: #ffdd67;
+            font-family: 'Times New Roman', serif;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .divider {
+            width: 15%;
+            margin: 25px auto;
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .subtitle-box {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 15px 10px;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #00a2ff;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background: linear-gradient(to bottom, rgba(0,100,255,0.2), rgba(0,200,255,0.3));
+        }
+
+        .stat-item {
+            padding: 20px 10px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-item .number {
+            display: block;
+            font-size: 2.8rem;
+            font-family: 'Georgia', serif;
+            color: #2b579a;
+            text-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+            font-weight: bold;
+        }
+
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: #a3d7ff;
+            font-weight: 500;
+        }
+
+        /* ==================== 2. MENU TAB NAVIGASI ==================== */
+        .nav-tabs-container {
+            width: 100%;
+            background-color: #007eff;
+            border-top: 1px solid #0055cc;
+            border-bottom: 1px solid #0055cc;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+        }
+
+        .tab-item {
+            padding: 18px 28px;
+            font-size: 0.95rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            border-right: 1px solid rgba(0,0,0,0.1);
+            display: inline-block;
+            transition: background 0.2s;
+        }
+
+        .tab-item.active {
+            background-color: #3b628c;
+        }
+
+        .tab-item:hover:not(.active) {
+            background-color: #0066dd;
+        }
+
+        /* ==================== 3. BAGIAN KONTEN MATERI ==================== */
+        .content-section {
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px 10px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .content-tag {
+            color: #ffaa00;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .content-title {
+            font-family: 'Georgia', serif;
+            font-size: 2.4rem;
+            font-weight: normal;
+            margin-bottom: 15px;
+            text-shadow: 1px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .content-desc {
+            font-size: 1.1rem;
+            color: #e2eeff;
+            max-width: 850px;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        /* Kotak Pencarian */
+        .search-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 35px;
+            backdrop-filter: blur(10px);
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px 24px;
+            color: white;
+            font-size: 1.05rem;
+            outline: none;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* Grid Kartu Materi */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .materi-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, background 0.2s;
+            cursor: pointer;
+        }
+
+        .materi-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .card-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            color: #d4e6ff;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .card-info {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        /* Baris Kedua Kartu (Khusus Haji & Umrah) */
+        .cards-row-2 {
+            width: 100%;
+            margin-bottom: 40px;
+        }
+        
+        .cards-row-2 .materi-card {
+            width: calc(25% - 15px); /* Menyamakan lebar dengan grid atas */
+        }
+
+        /* ==================== 4. BAGIAN INFORMASI / RUJUKAN (Gambar 3) ==================== */
+        .info-section {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .info-divider {
+            width: 100%;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.7;
+            max-width: 900px;
+            margin: 0 auto 25px auto;
+        }
+
+        .author-text {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 40px;
+        }
+
+        .author-name {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==================== 5. FOOTER BAR ==================== */
+        .footer-bar {
+            width: 100%;
+            background-color: #0072ff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-tag {
+            color: #ff9900;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-saran {
+            background-color: #1e2d4a;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+
+        .btn-saran:hover {
+            background-color: #152035;
+        }
+
+        /* Responsif Layar Kecil / HP */
+        @media (max-width: 992px) {
+            .cards-grid { grid-template-columns: repeat(2, 1fr); }
+            .cards-row-2 .materi-card { width: calc(50% - 10px); }
+        }
+        @media (max-width: 600px) {
+            .main-title { font-size: 2.2rem; }
+            .arabic-box { font-size: 1.8rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .cards-row-2 .materi-card { width: 100%; }
+            .footer-bar { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== BAGIAN ATAS (Gambar 1) ==================== -->
+    <div class="main-container">
+        <div class="top-tag">MATERI FIKIH DAN USHUL FIKIH</div>
+        <h1 class="main-title">Dār al-Fiqh wa Ushūlih</h1>
+        
+        <div class="arabic-box">dar al-fiqh wa ushulih &nbsp;  دار الفقه وأصوله</div>
+        
+        <hr class="divider">
+        
+        <div class="subtitle-box">Belajar Fikih dan Ushul Fikih dengan Mudah dan Praktis.</div>
+        
+        <div class="stats-grid">
+            <div class="stat-item">
+                <span class="number">5</span>
+                <span class="label">Bab Fikih Dasar</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">8</span>
+                <span class="label">Panel Materi</span>
+            </div>
+            <div class="stat-item">
+                <span class="number">4</span>
+                <span class="label">Visualisasi Kontekstual</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MENU TAB NAVIGASI ==================== -->
+    <nav class="nav-tabs-container">
+        <a href="#" class="tab-item active">Fikih</a>
+        <a href="#" class="tab-item">Kaidah Fikih</a>
+        <a href="#" class="tab-item">Ushul Fikih</a>
+        <a href="#" class="tab-item">Kaidah Ushul Fikih</a>
+        <a href="#" class="tab-item">Maqāṣid al-Sharī'ah</a>
+        <a href="#" class="tab-item">Fikih Visual</a>
+        <a href="#" class="tab-item">Glosarium Fikih</a>
+        <a href="#" class="tab-item">Glosarium Ushul Fikih</a>
+    </nav>
+
+    <!-- ==================== BAGIAN TENGAH KONTEN (Gambar 2) ==================== -->
+    <main class="content-section">
+        <div class="content-tag">UNTUK MASYARAKAT UMUM</div>
+        <h2 class="content-title">Fikih Dasar Keseharian</h2>
+        <p class="content-desc">Materi pokok ibadah yang dibutuhkan setiap muslim — disusun ringkas dengan bahasa yang mudah dipahami.</p>
+        
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Cari bab, misalnya: shalat, wudhu, zakat...">
+        </div>
+
+        <!-- Baris 1: 4 Kartu Materi Utama -->
+        <div class="cards-grid">
+            <!-- Card 1 -->
+            <div class="materi-card">
+                <div class="card-icon"></div>
+                <h3 class="card-title">Thaharah (Bersuci)</h3>
+                <p class="card-text">Wudhu, mandi wajib, tayamum, dan ketentuan najis.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="materi-card">
+                <div class="card-icon"></div>
+                <h3 class="card-title">Shalat</h3>
+                <p class="card-text">Syarat, rukun, hal yang membatalkan, dan shalat berjamaah.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="materi-card">
+                <div class="card-icon"></div>
+                <h3 class="card-title">Puasa</h3>
+                <p class="card-text">Niat, hal yang membatalkan, dan yang diperbolehkan.</p>
+                <span class="card-info">3 pokok bahasan</span>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="materi-card">
+                <div class="card-icon"></div>
+                <h3 class="card-title">Zakat</h3>
+                <p class="card-text">Nisab, jenis harta wajib zakat, dan golongan penerima.</p>
+            </div>
+        </div>
+
+        <!-- ==================== BAGIAN BAWAH KONTEN (Gambar 3) ==================== -->
+        <!-- Baris 2: Kartu Tambahan Haji & Umrah -->
+        <div class="cards-row-2">
+            <div class="materi-card">
+                <div class="card-icon"></div>
+                <h3 class="card-title">Haji & Umrah</h3>
+                <p class="card-text">Miqat, rukun, dan urutan pelaksanaan manasik.</p>
+                <span class="card-info">3 pokok bahasan</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Keterangan Rujukan & Pembuat -->
+    <section class="info-section">
+        <hr class="info-divider">
+        <p class="info-text">
+            Disusun sebagai materi pembelajaran fikih untuk mahasantri dan masyarakat umum. Rujukan utama: kitab-kitab fikih dan ushul fikih mazhab Syafi'i, dengan perbandingan mazhab lain bila relevan.
+        </p>
+        <p class="author-text">Disusun oleh <span class="author-name">Ainul Adhim</span></p>
+    </section>
+
+    <!-- ==================== FOOTER BAR ==================== -->
+    <footer class="footer-bar">
+        <div class="footer-tag">UNTUK MASYARAKAT UMUM</div>
+        <button class="btn-saran">Saran & Masukan</button>
+    </footer>
+
+</body>
+</html>
