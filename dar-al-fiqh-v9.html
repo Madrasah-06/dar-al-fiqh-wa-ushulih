@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dār al-Fiqh wa Uṣūlih</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/2.44.0/iconfont/tabler-icons.min.css">
+<style>
+:root{
+  --glass:rgba(255,255,255,0.14);
+  --glass2:rgba(255,255,255,0.22);
+  --glass3:rgba(255,255,255,0.32);
+  --glass-border:rgba(255,255,255,0.3);
+  --glass-border2:rgba(255,255,255,0.5);
+  --ink:#ffffff;
+  --ink-soft:rgba(255,255,255,0.75);
+  --ink-softer:rgba(255,255,255,0.5);
+  --nav-bg:rgba(0,80,160,0.93);
+  /* Warm Amber-Gold — sesuai foto referensi */
+  --gold:#FFC107;
+  --gold-bright:#FFD000;
+  --gold-pale:rgba(255,193,7,0.18);
+  --gold-glow:rgba(255,193,7,0.6);
+  --badge-ushul:#0055cc;--badge-kaidah:#0099bb;--badge-maqashid:#6633cc;
+  --badge-muamalah:#ee8800;--badge-ibadah:#004488;--badge-umum:#5577aa;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:linear-gradient(180deg,#00a2ff 0%,#7eceff 100%);background-attachment:fixed;color:var(--ink);line-height:1.7;overflow-x:hidden;}
+#anim-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+body>*:not(#anim-bg){position:relative;z-index:1;}
+
+/* ══ HERO ══ */
+.hero{position:relative;min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:90px 32px 60px;border-bottom:1px solid rgba(255,255,255,0.22);overflow:hidden;}
+.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 55%,rgba(0,60,140,0.35) 0%,transparent 70%);pointer-events:none;}
+.hero-content{position:relative;z-index:2;}
+
+/* EYEBROW — Warm Amber-Gold, shadow minimal agar tajam */
+.hero-eyebrow{
+  font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:800;margin-bottom:14px;
+  color:#FFC107;
+  text-shadow:0 1px 2px rgba(120,60,0,0.28);
+  opacity:0;animation:fadeUp .7s ease forwards;
+}
+/* TITLE — bold & readable */
+.hero-title{
+  font-family:'Lora',serif;font-size:44px;font-weight:700;
+  color:#ffffff;margin-bottom:10px;
+  text-shadow:
+    0 2px 4px rgba(0,0,0,0.7),
+    0 4px 18px rgba(0,45,120,0.6),
+    1px 1px 0 rgba(0,0,0,0.25);
+  opacity:0;animation:fadeUp .7s ease forwards .12s;
+}
+/* ARABIC — Warm Amber-Gold, shadow minimal agar tajam */
+.hero-arabic{
+  font-family:'Amiri',serif;font-size:38px;font-weight:700;
+  color:#FFD000;margin-bottom:20px;
+  text-shadow:0 1px 3px rgba(120,60,0,0.3);
+  opacity:0;animation:fadeUp .7s ease forwards .22s;
+}
+.hero-divider{width:52px;height:2px;background:linear-gradient(90deg,transparent,#FFD700,transparent);box-shadow:0 0 10px rgba(255,215,0,0.8);margin:0 auto 20px;opacity:0;animation:fadeUp .7s ease forwards .3s;}
+/* SUBTITLE — lebih tebal & terbaca */
+.hero-sub{
+  font-size:16px;font-weight:500;
+  color:rgba(255,255,255,0.97);
+  max-width:500px;margin:0 auto 20px;
+  text-shadow:0 2px 8px rgba(0,40,120,0.55),0 1px 4px rgba(0,0,0,0.4);
+  opacity:0;animation:fadeUp .7s ease forwards .38s;
+}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0);}from{opacity:0;transform:translateY(12px);}}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.in-view{opacity:1;transform:translateY(0);}
+
+/* ══ NAV ══ */
+.nav-wrap{position:sticky;top:0;z-index:50;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.18);padding:0 16px;}
+.nav-tabs{display:flex;gap:1px;max-width:1100px;margin:0 auto;overflow-x:auto;}
+.nav-tabs::-webkit-scrollbar{height:3px;}.nav-tabs::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.3);border-radius:2px;}
+.nav-tab{flex:0 0 auto;padding:13px 12px 10px;font-size:12px;font-weight:500;color:var(--ink-soft);border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:color .2s,border-color .2s,background .2s;display:flex;align-items:center;gap:5px;border-radius:6px 6px 0 0;}
+.nav-tab i{font-size:14px;transition:transform .2s;}
+.nav-tab:hover{color:#fff;background:rgba(255,255,255,0.12);}
+.nav-tab:hover i{transform:translateY(-2px);}
+.nav-tab.active{color:var(--gold-bright);border-bottom-color:var(--gold);background:var(--gold-pale);}
+
+/* ══ MAIN ══ */
+main{max-width:980px;margin:0 auto;padding:36px 20px 100px;}
+.panel{display:none;}
+.panel.active{display:block;animation:panelIn .28s ease;}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.section-head{margin-bottom:24px;}
+.section-head .eyebrow{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:5px;text-shadow:0 0 10px var(--gold-glow);}
+.section-head h2{font-family:'Lora',serif;font-size:24px;font-weight:600;color:#fff;margin-bottom:7px;}
+.section-head p{color:var(--ink-soft);font-size:14.5px;max-width:620px;}
+
+/* ── SEARCH ── */
+.search-box{display:flex;align-items:center;gap:10px;background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;padding:10px 14px;margin-bottom:20px;transition:border-color .2s;backdrop-filter:blur(6px);}
+.search-box:focus-within{border-color:rgba(255,255,255,.6);}
+.search-box i{color:var(--ink-soft);font-size:17px;}
+.search-box input{border:none;background:none;outline:none;font-family:'Inter',sans-serif;font-size:14px;color:#fff;width:100%;}
+.search-box input::placeholder{color:var(--ink-softer);}
+.hl{color:#FFD700;background:rgba(255,215,0,0.22);border-radius:3px;font-weight:700;padding:0 1px;}
+
+/* ══ FLOATING HOVER EFFECT — semua kartu ══ */
+.bab-card,.accordion-item,.gloss-item,.visual-item,.lab-card,.subtopik-item{
+  transition:border-color .22s,transform .28s cubic-bezier(.34,1.56,.64,1),box-shadow .28s ease,background .22s;
+}
+.bab-card:hover,.accordion-item:hover,.gloss-item:hover,.visual-item:hover,.lab-card:hover,.subtopik-item:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(0,80,180,0.28),0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ── BAB GRID ── */
+.bab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-bottom:8px;}
+.bab-card{border:1px solid var(--glass-border);background:var(--glass);border-radius:12px;padding:16px;cursor:pointer;backdrop-filter:blur(6px);}
+.bab-card:hover{border-color:rgba(255,255,255,.6);background:var(--glass2);}
+.bab-card.active-bab{border-color:var(--gold);background:var(--gold-pale);}
+.bab-card .icon{width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,0.18);color:#fff;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:11px;}
+.bab-card h3{font-size:14px;font-weight:600;color:#fff;margin-bottom:4px;}
+.bab-card p{font-size:12px;color:var(--ink-soft);}
+.bab-card .count{display:inline-block;margin-top:8px;font-size:11px;color:var(--gold-bright);font-weight:600;}
+
+/* ── SUBTOPIK ── */
+.subtopik-list{margin:18px 0;display:none;}
+.subtopik-list.visible{display:block;animation:panelIn .25s ease;}
+.subtopik-head{font-family:'Lora',serif;font-size:16px;color:var(--gold-bright);margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(255,255,255,0.2);text-shadow:0 0 10px var(--gold-glow);}
+.subtopik-item{border:1px solid var(--glass-border);background:var(--glass);border-radius:10px;margin-bottom:7px;overflow:hidden;backdrop-filter:blur(6px);}
+.subtopik-item:hover{border-color:rgba(255,255,255,.5);}
+/* Fashl heading — CENTER */
+.subtopik-trigger{display:flex;align-items:center;justify-content:center;padding:13px 16px;cursor:pointer;gap:10px;position:relative;}
+.subtopik-trigger h4{font-size:14px;font-weight:600;color:#fff;text-align:center;flex:1;}
+.subtopik-trigger i{color:var(--ink-soft);transition:transform .2s;font-size:17px;position:absolute;right:16px;}
+.subtopik-item.open .subtopik-trigger i{transform:rotate(180deg);}
+.subtopik-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.subtopik-item.open .subtopik-body{max-height:900px;}
+/* Subtopik content — center align */
+.subtopik-content{padding:0 16px 16px;text-align:center;}
+.subtopik-content .dalil{font-family:'Amiri',serif;direction:rtl;text-align:right;font-size:21px;color:var(--gold-bright);background:rgba(255,255,255,0.08);border-radius:9px;padding:13px 16px;margin:11px 0;line-height:2;border:1px solid rgba(255,255,255,0.18);text-shadow:0 0 10px var(--gold-glow);}
+.subtopik-content .dalil-terjemah{font-size:13px;color:var(--ink-soft);font-style:italic;margin-bottom:10px;}
+.subtopik-content p{font-size:14px;color:var(--ink-soft);margin-bottom:7px;text-align:center;}
+.subtopik-content .ikhtilaf{border-left:3px solid var(--gold);background:var(--gold-pale);padding:11px 14px;margin-top:10px;font-size:13px;border-radius:0 8px 8px 0;text-align:left;}
+.subtopik-content .ikhtilaf .madz{font-weight:600;color:var(--gold-bright);}
+
+/* ── ACCORDION ── */
+.accordion-item{border:1px solid var(--glass-border);border-radius:12px;margin-bottom:9px;overflow:hidden;background:var(--glass);backdrop-filter:blur(6px);}
+.accordion-item:hover{border-color:rgba(255,255,255,.5);}
+.accordion-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;gap:12px;}
+.accordion-arabic{font-family:'Amiri',serif;font-size:21px;color:var(--gold-bright);direction:rtl;flex:1;line-height:1.6;text-shadow:0 0 12px var(--gold-glow);}
+.accordion-sub{font-size:12px;color:var(--ink-soft);margin-top:2px;font-style:italic;}
+.accordion-label{font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,0.9);background:rgba(255,255,255,0.18);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(255,255,255,0.3);}
+.accordion-head i{color:var(--ink-soft);transition:transform .2s;font-size:17px;flex-shrink:0;}
+.accordion-item.open .accordion-head i{transform:rotate(180deg);}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.accordion-item.open .accordion-body{max-height:1000px;}
+.accordion-content{padding:0 18px 18px;font-size:13.5px;color:var(--ink-soft);}
+.accordion-content .label{font-weight:600;color:rgba(255,255,255,.9);font-size:12.5px;margin-top:10px;display:block;}
+
+/* ── VISUAL — tanpa kotak gambar ── */
+.visual-item{border:1px solid var(--glass-border);background:var(--glass);border-radius:13px;margin-bottom:11px;overflow:hidden;backdrop-filter:blur(6px);}
+.visual-item:hover{border-color:rgba(255,255,255,.5);}
+.visual-trigger{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;cursor:pointer;gap:12px;}
+.visual-trigger .vtitle{font-family:'Lora',serif;font-size:15px;font-weight:600;color:#fff;}
+.visual-trigger .vfact{font-size:11px;font-weight:600;color:rgba(255,255,255,.9);background:rgba(255,255,255,0.18);padding:3px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;border:1px solid rgba(255,255,255,0.3);}
+.visual-trigger i{color:var(--ink-soft);transition:transform .2s;font-size:17px;flex-shrink:0;}
+.visual-item.open .visual-trigger i{transform:rotate(180deg);}
+.visual-body-wrap{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.visual-item.open .visual-body-wrap{max-height:400px;}
+/* Hanya deskripsi — tidak ada kotak foto */
+.visual-desc-only{padding:14px 20px 20px;font-size:14px;color:var(--ink-soft);line-height:1.7;}
+
+/* ── GLOSARIUM ── */
+.gloss-item{border:1px solid var(--glass-border);border-radius:9px;margin-bottom:7px;overflow:hidden;background:var(--glass);backdrop-filter:blur(6px);}
+.gloss-item:hover{border-color:rgba(255,255,255,.5);}
+.gloss-trigger{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;cursor:pointer;gap:12px;}
+.gloss-trigger .term-wrap{display:flex;align-items:center;gap:10px;flex:1;}
+.gloss-trigger .term{font-weight:600;color:#fff;font-size:14px;}
+.gloss-trigger .ar{font-family:'Amiri',serif;font-size:17px;color:var(--gold-bright);direction:rtl;text-shadow:0 0 8px var(--gold-glow);}
+.gloss-trigger i{color:var(--ink-soft);transition:transform .2s;font-size:17px;flex-shrink:0;}
+.gloss-item.open .gloss-trigger i{transform:rotate(180deg);}
+.gloss-body{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+.gloss-item.open .gloss-body{max-height:300px;}
+.gloss-def{padding:0 15px 13px;font-size:13px;color:var(--ink-soft);}
+
+/* ══ LAB WĀQI'IYYAH ══ */
+.lab-info-bar{display:flex;align-items:center;gap:9px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:12.5px;color:var(--ink-soft);backdrop-filter:blur(6px);}
+.lab-info-bar i{font-size:15px;color:var(--gold-bright);flex-shrink:0;}
+.lab-info-bar a{color:var(--gold-bright);font-weight:600;text-decoration:none;}
+.lab-info-bar a:hover{text-decoration:underline;}
+.lab-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:var(--glass);border:1px solid var(--glass-border);border-radius:12px;padding:12px 16px;margin-bottom:14px;backdrop-filter:blur(6px);}
+.lab-toolbar-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+.lab-toolbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+/* Tombol Perbarui Data — solid biru sesuai gambar */
+.btn-lab-refresh{display:inline-flex;align-items:center;gap:7px;background:linear-gradient(135deg,#0099ff,#0070dd);border:none;color:#fff;border-radius:50px;padding:10px 22px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 14px rgba(0,120,255,0.4);transition:all .2s;}
+.btn-lab-refresh:hover{background:linear-gradient(135deg,#007add,#0055bb);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,100,220,0.5);}
+.btn-lab-refresh:disabled{opacity:.65;cursor:not-allowed;transform:none;}
+.btn-lab-refresh i{font-size:16px;}
+.btn-lab-refresh.spinning i{animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.lab-status{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-soft);}
+.lab-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8);flex-shrink:0;}
+.lab-dot.live{animation:pulseDot 2s infinite;}
+.lab-dot.offline{background:rgba(255,200,80,.9);animation:none;}
+@keyframes pulseDot{0%,100%{opacity:1;}50%{opacity:.4;}}
+.lab-chip{display:none;align-items:center;gap:5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);color:#fff;border-radius:20px;padding:3px 12px;font-size:11.5px;font-weight:600;}
+.lab-updated{display:none;align-items:center;gap:4px;font-size:11.5px;color:var(--ink-softer);}
+.lab-updated i{font-size:12px;}
+.lab-demo-notice{display:none;align-items:flex-start;gap:10px;background:rgba(255,200,80,.15);border:1px solid rgba(255,200,80,.35);border-radius:10px;padding:11px 14px;margin-bottom:14px;font-size:13px;color:rgba(255,230,150,.95);}
+.lab-demo-notice i{font-size:17px;color:rgba(255,200,80,.9);flex-shrink:0;margin-top:1px;}
+.lab-demo-notice.show{display:flex;}
+.lab-filter-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;}
+.lab-filter{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:30px;border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.1);color:var(--ink-soft);font-size:12px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;backdrop-filter:blur(4px);}
+.lab-filter i{font-size:13px;}
+.lab-filter:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.5);color:#fff;}
+.lab-filter.active{background:rgba(255,255,255,.25);border-color:rgba(255,255,255,.6);color:#fff;box-shadow:0 3px 10px rgba(0,80,180,.15);}
+.lab-filter .fc{background:rgba(255,255,255,.18);border-radius:10px;padding:1px 7px;font-size:10.5px;font-weight:700;}
+.lab-filter.active .fc{background:rgba(255,255,255,.28);}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;}
+.lab-card{border:1px solid var(--glass-border);background:var(--glass);border-radius:14px;padding:18px;backdrop-filter:blur(6px);text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:9px;animation:panelIn .38s ease both;}
+.lab-card:hover{border-color:rgba(255,255,255,.55);background:var(--glass2);}
+.lab-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;flex-wrap:wrap;}
+.lab-badges{display:flex;gap:5px;flex-wrap:wrap;}
+.lab-badge{font-size:10px;font-weight:700;padding:2px 9px;border-radius:20px;color:#fff;white-space:nowrap;}
+.lb-ushul{background:var(--badge-ushul);}.lb-kaidah{background:var(--badge-kaidah);}.lb-maqashid{background:var(--badge-maqashid);}.lb-muamalah{background:var(--badge-muamalah);}.lb-ibadah{background:var(--badge-ibadah);}.lb-umum{background:var(--badge-umum);}
+.lab-card-date{font-size:10.5px;color:var(--ink-softer);white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:3px;}
+.lab-card-date i{font-size:12px;}
+.lab-card h4{font-family:'Lora',serif;font-size:15px;font-weight:600;color:#fff;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.lab-card p{font-size:12.5px;color:var(--ink-soft);line-height:1.65;flex:1;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.lab-card-footer{display:flex;align-items:center;justify-content:space-between;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);margin-top:2px;}
+.lab-card-src{font-size:10.5px;color:var(--ink-softer);display:flex;align-items:center;gap:4px;}
+.lab-card-src i{font-size:12px;}
+.lab-read{font-size:11.5px;color:var(--gold-bright);font-weight:600;display:flex;align-items:center;gap:3px;text-decoration:none;}
+.lab-read:hover{color:#fff;}
+.lab-read i{font-size:13px;}
+.lab-skeleton{border:1px solid var(--glass-border);background:var(--glass);border-radius:14px;padding:18px;backdrop-filter:blur(4px);}
+.lab-sk{background:linear-gradient(90deg,rgba(255,255,255,.08) 0%,rgba(255,255,255,.18) 50%,rgba(255,255,255,.08) 100%);background-size:300% 100%;animation:shimmer 1.4s infinite linear;border-radius:5px;margin-bottom:9px;}
+@keyframes shimmer{0%{background-position:300% 0}100%{background-position:-300% 0}}
+.lsk-b{height:18px;width:80px;}.lsk-t1{height:14px;width:96%;margin-top:12px;}.lsk-t2{height:14px;width:72%;}.lsk-d1{height:11px;width:100%;margin-top:10px;}.lsk-d2{height:11px;width:85%;}.lsk-d3{height:11px;width:65%;}.lsk-f{height:11px;width:100px;margin-top:12px;}
+.lab-empty{grid-column:1/-1;text-align:center;padding:56px 20px;color:var(--ink-softer);}
+.lab-empty i{font-size:42px;display:block;margin-bottom:12px;}
+.lab-empty h3{font-size:15.5px;color:var(--ink-soft);margin-bottom:5px;}
+.lab-empty p{font-size:13px;}
+
+/* ══ MODAL — sama background untuk Quiz & Saran ══ */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);background:rgba(0,50,120,0.6);align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;animation:fadeOverlay .2s ease;}
+@keyframes fadeOverlay{from{opacity:0;}to{opacity:1;}}
+/* SAMA untuk Quiz & Saran */
+.modal-dialog{background:rgba(0,80,160,0.93);border:1px solid rgba(255,255,255,0.25);border-radius:18px;width:min(520px,92vw);max-height:88vh;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.45);animation:modalIn .25s cubic-bezier(.4,0,.2,1);backdrop-filter:blur(12px);}
+@keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,.18);flex-shrink:0;}
+.modal-header h3{font-family:'Lora',serif;font-size:17px;color:var(--gold-bright);display:flex;align-items:center;gap:8px;text-shadow:0 0 10px var(--gold-glow);}
+.modal-close{width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.12);color:var(--ink-soft);border:1px solid rgba(255,255,255,.2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;transition:background .15s,color .15s;}
+.modal-close:hover{background:rgba(255,255,255,.25);color:#fff;}
+.modal-body{flex:1;overflow-y:auto;padding:20px;}
+.modal-body-iframe{flex:1;overflow:hidden;}
+.modal-body-iframe iframe{width:100%;height:540px;border:none;display:block;border-radius:0 0 10px 10px;background:#fff;}
+/* Quiz */
+.quiz-q{margin-bottom:22px;}
+.quiz-q .qnum{font-size:11px;color:var(--gold);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.08em;}
+.quiz-q .qtxt{font-size:15px;color:#fff;font-weight:500;margin-bottom:12px;line-height:1.5;}
+.quiz-opts{display:flex;flex-direction:column;gap:8px;}
+.quiz-opt{padding:10px 15px;border-radius:9px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.08);color:var(--ink-soft);cursor:pointer;font-size:13.5px;font-family:'Inter',sans-serif;text-align:left;transition:all .18s;}
+.quiz-opt:hover:not(:disabled){background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.45);color:#fff;}
+.quiz-opt.correct{background:rgba(80,180,255,.25);border-color:#66ccff;color:#cceeff;}
+.quiz-opt.wrong{background:rgba(255,100,80,.2);border-color:#ff7755;color:#ffccbb;}
+.quiz-nav{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.14);}
+.quiz-prog{font-size:12px;color:var(--ink-softer);}
+.quiz-btn{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 18px;border-radius:20px;font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s;}
+.quiz-btn:hover{background:rgba(255,255,255,.28);}
+.quiz-result{text-align:center;padding:22px 0;}
+.quiz-result .score{font-family:'Lora',serif;font-size:44px;font-weight:600;color:var(--gold-bright);text-shadow:0 0 20px var(--gold-glow);margin-bottom:8px;}
+.quiz-result p{color:var(--ink-soft);font-size:14px;}
+
+/* ── FAB ── */
+.fab-group{position:fixed;bottom:22px;right:22px;z-index:100;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.fab-btn{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.3);transition:transform .15s,box-shadow .15s,background .2s;}
+.fab-btn:hover{transform:translateY(-3px);box-shadow:0 7px 28px rgba(0,0,0,.38);}
+.fab-btn i{font-size:17px;}
+.fab-saran{background:rgba(0,80,160,.88);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);}
+.fab-saran:hover{background:rgba(0,100,200,.92);}
+/* Samakan style Quiz dengan Saran & Masukan */
+.fab-quiz{background:rgba(0,80,160,.88);color:#fff;border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);}
+.fab-quiz:hover{background:rgba(0,100,200,.92);}
+
+/* ══ FOOTNOTE — kotak putih, teks hitam ══ */
+.footnote{
+  margin-top:40px;padding:22px 26px;
+  background:rgba(255,255,255,0.88);
+  backdrop-filter:blur(8px);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.9);
+  box-shadow:0 4px 20px rgba(0,80,180,.12);
+}
+.footnote p{font-size:13px;color:#1a2c4a;line-height:1.7;text-align:center;}
+.footnote .kitab{font-style:italic;font-weight:500;color:#003d8f;}
+.footnote .author{margin-top:8px;font-size:13px;font-weight:700;color:#1a2c4a;text-align:center;}
+
+.hidden{display:none!important;}
+@media(max-width:600px){.hero-title{font-size:30px;}.visual-inner{flex-direction:column;}.lab-grid{grid-template-columns:1fr;}.modal-dialog{max-height:94vh;}}
+</style>
+</head>
+<body>
+
+<canvas id="anim-bg"></canvas>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">MATERI FIKIH DAN UṢ&#362;L AL-FIQH</div>
+    <div class="hero-title">Dār al-Fiqh wa Uṣūlih</div>
+    <div class="hero-arabic">دار الفقه وأصوله</div>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Belajar Fikih dan Uṣūl al-Fiqh dengan Mudah dan Praktis</p>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<div class="nav-wrap">
+  <div class="nav-tabs">
+    <div class="nav-tab active" data-panel="dasar"><i class="ti ti-book-2"></i>Fikih</div>
+    <div class="nav-tab" data-panel="kaidah-fikih"><i class="ti ti-scale"></i>Kaidah Fikih</div>
+    <div class="nav-tab" data-panel="ushul"><i class="ti ti-stack-2"></i>Ushul Fikih</div>
+    <div class="nav-tab" data-panel="kaidah-ushul"><i class="ti ti-compass"></i>Kaidah Ushul Fikih</div>
+    <div class="nav-tab" data-panel="maqashid"><i class="ti ti-target-arrow"></i>Maqāṣid al-Sharīʿah</div>
+    <div class="nav-tab" data-panel="visual"><i class="ti ti-eye"></i>Fikih Visual</div>
+    <div class="nav-tab" data-panel="glosarium-fikih"><i class="ti ti-list-details"></i>Glosarium Fikih</div>
+    <div class="nav-tab" data-panel="glosarium-ushul"><i class="ti ti-list-search"></i>Glosarium Ushul Fikih</div>
+    <div class="nav-tab" data-panel="lab"><i class="ti ti-flask"></i>Laboratorium Wāqiʿiyyah</div>
+  </div>
+</div>
+
+<main>
+  <!-- ① FIKIH DASAR -->
+  <section class="panel active" id="panel-dasar">
+    <div class="section-head reveal"><div class="eyebrow">Untuk masyarakat umum</div><h2>Fikih Dasar Keseharian</h2><p>Materi pokok ibadah yang dibutuhkan setiap muslim.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-dasar" placeholder="Cari bab, fashl, atau isi materi..."></div>
+    <div class="bab-grid reveal" id="bab-grid-dasar"></div>
+    <div class="subtopik-list" id="subtopik-list"><div class="subtopik-head" id="subtopik-head"></div><div id="subtopik-items"></div></div>
+  </section>
+  <!-- ② KAIDAH FIKIH -->
+  <section class="panel" id="panel-kaidah-fikih">
+    <div class="section-head reveal"><div class="eyebrow">Prinsip praktis</div><h2>Kaidah Fikih</h2><p>Rumusan singkat pegangan dalam menyelesaikan persoalan fikih.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-kaidah-fikih" placeholder="Cari kaidah atau penjelasannya..."></div>
+    <div id="accordion-kaidah-fikih"></div>
+  </section>
+  <!-- ③ USHUL FIKIH -->
+  <section class="panel" id="panel-ushul">
+    <div class="section-head reveal"><div class="eyebrow">Untuk mahasantri</div><h2>Ushul Fikih</h2><p>Metodologi penetapan hukum — sumber hukum, kaidah kebahasaan, dan metode istinbath.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-ushul" placeholder="Cari tema ushul fikih..."></div>
+    <div id="accordion-ushul"></div>
+  </section>
+  <!-- ④ KAIDAH USHUL -->
+  <section class="panel" id="panel-kaidah-ushul">
+    <div class="section-head reveal"><div class="eyebrow">Metodologi</div><h2>Kaidah Ushul Fikih</h2><p>Prinsip metodologis ulama dalam menggali hukum dari sumber-sumber syariat.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-kaidah-ushul" placeholder="Cari kaidah ushul..."></div>
+    <div id="accordion-kaidah-ushul"></div>
+  </section>
+  <!-- ⑤ MAQASHID -->
+  <section class="panel" id="panel-maqashid">
+    <div class="section-head reveal"><div class="eyebrow">Tujuan tertinggi syariat</div><h2>Maqāṣid al-Sharīʿah</h2><p>Tujuan syariat: dharuriyat, hajiyat, dan tahsiniyat.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-maqashid" placeholder="Cari maqashid..."></div>
+    <div id="accordion-maqashid"></div>
+  </section>
+  <!-- ⑥ FIKIH VISUAL -->
+  <section class="panel" id="panel-visual">
+    <div class="section-head reveal"><div class="eyebrow">Memahami, bukan sekadar menghafal</div><h2>Fikih Visual &amp; Kontekstual</h2><p>Ketentuan fikih dijelaskan secara kontekstual agar lebih mudah dipahami.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-visual" placeholder="Cari tema visual..."></div>
+    <div id="visual-list"></div>
+  </section>
+  <!-- ⑦ GLOSARIUM FIKIH -->
+  <section class="panel" id="panel-glosarium-fikih">
+    <div class="section-head reveal"><div class="eyebrow">Referensi cepat</div><h2>Glosarium Istilah Fikih</h2><p>Kumpulan istilah yang sering muncul dalam pembahasan fikih.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-gloss-fikih" placeholder="Cari istilah fikih..."></div>
+    <div id="gloss-fikih"></div>
+  </section>
+  <!-- ⑧ GLOSARIUM USHUL -->
+  <section class="panel" id="panel-glosarium-ushul">
+    <div class="section-head reveal"><div class="eyebrow">Referensi cepat</div><h2>Glosarium Istilah Ushul Fikih</h2><p>Kumpulan istilah dalam pembahasan ushul fikih dan maqashid.</p></div>
+    <div class="search-box reveal"><i class="ti ti-search"></i><input type="text" id="search-gloss-ushul" placeholder="Cari istilah ushul fikih..."></div>
+    <div id="gloss-ushul"></div>
+  </section>
+  <!-- ⑨ LABORATORIUM WĀQI'IYYAH -->
+  <section class="panel" id="panel-lab">
+    <div class="section-head reveal">
+      <div class="eyebrow">Inovasi Media Pembelajaran</div>
+      <h2>Laboratorium Wāqiʿiyyah <span style="font-family:'Amiri',serif;font-size:22px;color:var(--gold-bright);">مختبر الواقعية</span></h2>
+      <p>Sistem otomatis pemetaan <em>al-masāʾil al-wāqiʿiyyah</em> dari NU Online ke dalam rumpun kurikulum.</p>
+    </div>
+    <div class="lab-info-bar reveal"><i class="ti ti-rss"></i><span>Sumber: <a href="https://islam.nu.or.id/bahtsul-masail" target="_blank" rel="noopener">NU Online – Bahtsul Masail</a> &nbsp;·&nbsp; RSS → JSON via rss2json.com &nbsp;·&nbsp; Cache 24 jam</span></div>
+    <div class="lab-toolbar reveal">
+      <div class="lab-toolbar-left">
+        <button class="btn-lab-refresh" id="btn-lab-refresh" onclick="fetchLab(true)"><i class="ti ti-refresh"></i> Perbarui Data</button>
+        <div class="lab-status"><span class="lab-dot live" id="lab-dot"></span><span id="lab-status-text">Memuat…</span></div>
+      </div>
+      <div class="lab-toolbar-right">
+        <div class="lab-chip" id="lab-chip"><i class="ti ti-article" style="font-size:12px;"></i><span id="lab-count">0</span> artikel</div>
+        <div class="lab-updated" id="lab-updated"><i class="ti ti-clock"></i><span id="lab-updated-text"></span></div>
+      </div>
+    </div>
+    <div class="lab-demo-notice" id="lab-demo-notice"><i class="ti ti-alert-triangle"></i><span><strong>Mode Demo:</strong> RSS tidak dapat diambil. Menampilkan 8 artikel contoh realistis.</span></div>
+    <div class="lab-filter-row reveal" id="lab-filter-row">
+      <button class="lab-filter active" data-cat="Semua"><i class="ti ti-layout-grid"></i>Semua<span class="fc" id="lfc-all">0</span></button>
+      <button class="lab-filter" data-cat="Ushul Fikih"><i class="ti ti-stack-2"></i>Ushul Fikih<span class="fc" id="lfc-ushul">0</span></button>
+      <button class="lab-filter" data-cat="Kaidah Fikih"><i class="ti ti-scale"></i>Kaidah Fikih<span class="fc" id="lfc-kaidah">0</span></button>
+      <button class="lab-filter" data-cat="Maqāṣid"><i class="ti ti-target-arrow"></i>Maqāṣid<span class="fc" id="lfc-maqashid">0</span></button>
+      <button class="lab-filter" data-cat="Fikih Muamalah"><i class="ti ti-coins"></i>Fikih Muamalah<span class="fc" id="lfc-muamalah">0</span></button>
+      <button class="lab-filter" data-cat="Fikih Ibadah"><i class="ti ti-building-mosque"></i>Fikih Ibadah<span class="fc" id="lfc-ibadah">0</span></button>
+    </div>
+    <div class="lab-grid" id="lab-grid"></div>
+  </section>
+
+  <!-- FOOTNOTE — kotak putih, teks hitam -->
+  <div class="footnote">
+    <p>Disusun untuk mendukung pembelajaran Fikih dan Uṣūl al-Fiqh berbasis turāṡ klasik maupun kontemporer bagi mahasantri Ma'had Aly.</p>
+    <p class="author">Penyusun : Ainul Adhim</p>
+  </div>
+</main>
+
+<!-- FAB -->
+<div class="fab-group">
+  <button class="fab-btn fab-quiz" id="fab-quiz"><i class="ti ti-help-circle"></i> Uji Pemahaman</button>
+  <button class="fab-btn fab-saran" id="fab-saran"><i class="ti ti-message-2-plus"></i> Saran &amp; Masukan</button>
+</div>
+
+<!-- MODAL SARAN -->
+<div class="modal-overlay" id="modal-saran">
+  <div class="modal-dialog">
+    <div class="modal-header"><h3><i class="ti ti-message-2-plus"></i> Saran &amp; Masukan</h3><button class="modal-close" data-close="modal-saran"><i class="ti ti-x"></i></button></div>
+    <div class="modal-body-iframe"><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSee0T8IMiAHFFfIUEnIeeuNqr0uvU70z7ruajEk93NLwWJh8A/viewform?embedded=true" width="100%" height="540" frameborder="0">Memuat…</iframe></div>
+  </div>
+</div>
+
+<!-- MODAL QUIZ -->
+<div class="modal-overlay" id="modal-quiz">
+  <div class="modal-dialog">
+    <div class="modal-header"><h3><i class="ti ti-help-circle"></i> Uji Pemahaman</h3><button class="modal-close" data-close="modal-quiz"><i class="ti ti-x"></i></button></div>
+    <div class="modal-body" id="quiz-body"></div>
+  </div>
+</div>
+
+<script>
+/* ── CANVAS SKY: #00a2ff → #7eceff, NO WHITE ── */
+(function(){
+  const cv=document.getElementById('anim-bg'),ctx=cv.getContext('2d');
+  let W,H,particles,rings,wisps,t=0;
+  function resize(){W=cv.width=window.innerWidth;H=cv.height=window.innerHeight;}
+  function mkP(){return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.3,vx:(Math.random()-.5)*.28,vy:(Math.random()-.5)*.28,a:Math.random()*.5+.1};}
+  function mkR(){return{x:Math.random()*W,y:Math.random()*H,r:0,maxR:Math.random()*200+60,sp:Math.random()*.45+.1,a:Math.random()*.12+.03};}
+  function mkW(){return{x:-200+Math.random()*W,y:Math.random()*H*.7,w:Math.random()*300+120,h:Math.random()*50+20,vx:.12+Math.random()*.1,a:Math.random()*.07+.02};}
+  function initAll(){particles=[];rings=[];wisps=[];const n=Math.min(Math.floor(W*H/5500),190);for(let i=0;i<n;i++)particles.push(mkP());for(let i=0;i<8;i++){const r=mkR();r.r=Math.random()*r.maxR;rings.push(r);}for(let i=0;i<6;i++)wisps.push(mkW());}
+  function frame(){
+    t+=.003;
+    const grd=ctx.createLinearGradient(0,0,0,H);
+    grd.addColorStop(0,'#0088ee');grd.addColorStop(0.3,'#00a2ff');grd.addColorStop(0.65,'#3bbdff');grd.addColorStop(1,'#7eceff');
+    ctx.fillStyle=grd;ctx.fillRect(0,0,W,H);
+    wisps.forEach(w=>{w.x+=w.vx;if(w.x-w.w>W+60){w.x=-w.w-60;w.y=Math.random()*H*.65;}
+      const cg=ctx.createRadialGradient(w.x,w.y,0,w.x,w.y,Math.max(w.w,w.h)*.6);cg.addColorStop(0,`rgba(255,255,255,${w.a})`);cg.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=cg;ctx.fillRect(w.x-w.w,w.y-w.h,w.w*2,w.h*2);});
+    for(let o=0;o<3;o++){const ox=W*(0.18+o*0.32+Math.sin(t*.6+o)*.06),oy=H*(0.22+o*0.28+Math.cos(t*.5+o*1.3)*.07);const gr=ctx.createRadialGradient(ox,oy,0,ox,oy,W*.2);gr.addColorStop(0,`rgba(255,255,255,${0.1+o*0.02})`);gr.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=gr;ctx.fillRect(0,0,W,H);}
+    rings.forEach(r=>{r.r+=r.sp;if(r.r>r.maxR){r.x=Math.random()*W;r.y=Math.random()*H;r.r=0;r.maxR=Math.random()*200+60;}const fade=1-(r.r/r.maxR);ctx.beginPath();ctx.arc(r.x,r.y,r.r,0,Math.PI*2);ctx.strokeStyle=`rgba(255,255,255,${r.a*fade})`;ctx.lineWidth=.8;ctx.stroke();});
+    particles.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<-3)p.x=W+3;if(p.x>W+3)p.x=-3;if(p.y<-3)p.y=H+3;if(p.y>H+3)p.y=-3;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.a})`;ctx.fill();});
+    for(let i=0;i<particles.length;i++)for(let j=i+1;j<particles.length;j++){const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<82){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(255,255,255,${.08*(1-d/82)})`;ctx.lineWidth=.5;ctx.stroke();}}
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize',()=>{resize();initAll();},{passive:true});
+  window.addEventListener('mousemove',e=>{particles.forEach(p=>{const dx=p.x-e.clientX,dy=p.y-e.clientY,d=Math.sqrt(dx*dx+dy*dy);if(d<80){p.vx+=dx/d*.04;p.vy+=dy/d*.04;const s=Math.sqrt(p.vx*p.vx+p.vy*p.vy);if(s>1){p.vx*=.88;p.vy*=.88;}}});},{passive:true});
+  resize();initAll();frame();
+})();
+
+/* ── HELPERS ── */
+function hlText(t,q){if(!q)return t;const e=q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');return t.replace(new RegExp('('+e+')','gi'),'<span class="hl">$1</span>');}
+function stripHtml(h){return(h||'').replace(/<[^>]+>/g,' ').replace(/\s+/g,' ').trim();}
+
+/* ── DATA ── */
+const babData=[
+  {key:'thaharah',icon:'ti-droplet',h3:'Thaharah (Bersuci)',p:'Wudhu, mandi wajib, tayamum, dan najis.',count:'4 pokok bahasan'},
+  {key:'shalat',icon:'ti-building-mosque',h3:'Shalat',p:'Syarat, rukun, dan shalat berjamaah.',count:'4 pokok bahasan'},
+  {key:'puasa',icon:'ti-moon-stars',h3:'Puasa',p:'Niat, hal yang membatalkan, dan yang dibolehkan.',count:'3 pokok bahasan'},
+  {key:'zakat',icon:'ti-coins',h3:'Zakat',p:'Nisab, jenis harta, dan golongan penerima.',count:'3 pokok bahasan'},
+  {key:'haji',icon:'ti-map-pin',h3:'Haji & Umrah',p:'Miqat, rukun, dan urutan manasik.',count:'3 pokok bahasan'}
+];
+const dataDasar={
+  thaharah:{title:"Thaharah (Bersuci)",items:[
+    {h:"Fashl: Wudhu",dalil:"يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا قُمْتُمْ إِلَى الصَّلَاةِ فَاغْسِلُوا وُجُوهَكُمْ وَأَيْدِيَكُمْ إِلَى الْمَرَافِقِ",terjemah:"QS. Al-Māʾidah: 6",teks:"Wudhu adalah bersuci dengan air untuk menghilangkan hadas kecil. Rukunnya: niat, membasuh wajah, kedua tangan sampai siku, mengusap sebagian kepala, dan membasuh kedua kaki sampai mata kaki."},
+    {h:"Fashl: Air Dua Kullah",dalil:"إِذَا بَلَغَ الْمَاءُ قُلَّتَيْنِ لَمْ يُنَجِّسْهُ شَيْءٌ",terjemah:"HR. Abu Dawud",teks:"Air dua kullah (±216 liter) tidak mudah najis kecuali berubah rasa, warna, atau baunya.",ikhtilaf:"Syafiʿiyah: ±216 liter (kubus ±60cm). Hanafiyah: patokan luas permukaan air."},
+    {h:"Fashl: Mandi Wajib",teks:"Mandi wajib wajib karena: junub, haid, nifas, wiladah, mati, masuk Islam. Rukun: niat + meratakan air ke seluruh tubuh."},
+    {h:"Fashl: Tayamum",teks:"Bersuci dengan debu suci pengganti wudhu/mandi. Rukun: niat, mengusap wajah, mengusap kedua tangan sampai pergelangan."}
+  ]},
+  shalat:{title:"Shalat",items:[
+    {h:"Fashl: Syarat Wajib Shalat",dalil:"إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَوْقُوتًا",terjemah:"QS. An-Nisāʾ: 103",teks:"Wajib bagi muslim, berakal, baligh. Shalat lima waktu adalah pembeda antara iman dan kekafiran."},
+    {h:"Fashl: Rukun Shalat",teks:"13 rukun: niat, takbiratul ihram, berdiri, Al-Fatihah, rukuk, tuma'ninah rukuk, iktidal, tuma'ninah iktidal, sujud 2×, tuma'ninah sujud, duduk antara sujud, tasyahud akhir+shalawat, salam, tertib."},
+    {h:"Fashl: Batas Aurat dalam Shalat",teks:"Laki-laki: pusar–lutut. Perempuan: seluruh tubuh kecuali wajah dan telapak tangan.",ikhtilaf:"Hanafiyah: telapak kaki perempuan boleh terbuka. Syafiʿiyah: wajib tertutup."},
+    {h:"Fashl: Shalat Berjamaah",teks:"Sunnah muakkadah. Keutamaannya 27 derajat dibanding shalat sendirian (HR. Bukhari Muslim)."}
+  ]},
+  puasa:{title:"Puasa",items:[
+    {h:"Fashl: Niat Puasa",dalil:"مَنْ لَمْ يُبَيِّتِ الصِّيَامَ قَبْلَ الْفَجْرِ فَلَا صِيَامَ لَهُ",terjemah:"HR. Abu Dawud & An-Nasāʾi",teks:"Niat puasa Ramadhan wajib pada malam hari sebelum fajar, untuk setiap harinya (mazhab Syafiʿi)."},
+    {h:"Fashl: Hal yang Membatalkan Puasa",teks:"Memasukkan sesuatu ke tubuh (sengaja), muntah sengaja, haid/nifas, hilang akal, murtad, jima'."},
+    {h:"Fashl: Hal yang Diperbolehkan saat Puasa",teks:"Berkumur + menghirup air (tidak berlebihan), mandi, berbekam, bercelak, mencicipi makanan (tidak ditelan), bersiwak."}
+  ]},
+  zakat:{title:"Zakat",items:[
+    {h:"Fashl: Nisab Emas dan Perak",teks:"Emas: 85 gr. Perak: 595 gr. Mencapai nisab + haul (1 tahun) → wajib zakat 2,5%."},
+    {h:"Fashl: Jenis Harta Wajib Zakat",teks:"Emas/perak/uang, harta perniagaan, hasil pertanian, barang tambang, hewan ternak, rikaz."},
+    {h:"Fashl: Golongan Penerima Zakat",dalil:"إِنَّمَا الصَّدَقَاتُ لِلْفُقَرَاءِ وَالْمَسَاكِينِ وَالْعَامِلِينَ عَلَيْهَا",terjemah:"QS. At-Tawbah: 60",teks:"8 asnaf: fakir, miskin, ʿāmil, muʾallaf, riqab, gharim, fi sabilillah, ibnu sabil."}
+  ]},
+  haji:{title:"Haji & Umrah",items:[
+    {h:"Fashl: Miqat",teks:"5 miqat makani: Dzul Hulaifah (Madinah), Juhfah (Syam/Mesir), Yalamlam (Yaman/Indonesia), Qarnul Manazil (Najd), Dzatu ʿIrq (Irak)."},
+    {h:"Fashl: Rukun Haji",teks:"6 rukun: ihram, wukuf di Arafah (9 Dzulhijjah), tawaf ifadhah, saʿi Safa-Marwah, tahallul, tertib."},
+    {h:"Fashl: Urutan Haji Tamattuʿ",teks:"Ihram umrah → Tawaf → Saʿi → Tahallul → Ihram haji → Mabit Mina → Wukuf Arafah → Muzdalifah → Jumrah → Hadyu → Tahallul → Tawaf ifadhah → Saʿi haji → Mabit Mina → Tawaf wada'."}
+  ]}
+};
+
+/* Buat teks pencarian lengkap dari semua isi bab */
+function getBabFullText(key){
+  const bab=dataDasar[key];if(!bab)return '';
+  return bab.items.map(it=>[it.h||'',it.teks||'',it.dalil||'',it.terjemah||'',it.ikhtilaf||''].join(' ')).join(' ');
+}
+
+const dKaidahFikih=[{ar:"اَلْيَقِينُ لَا يُزَالُ بِالشَّكِّ",label:"Kaidah Induk 1",terjemah:"Keyakinan tidak dihilangkan oleh keraguan.",body:'<span class="label">Penjelasan</span>Sesuatu yang sudah diyakini tetap berlaku kecuali ada bukti pasti yang mengubahnya.<span class="label">Contoh</span>Yakin sudah wudhu, lalu ragu batal — dianggap masih suci.'},{ar:"اَلضَّرَرُ يُزَالُ",label:"Kaidah Induk 2",terjemah:"Kemudaratan harus dihilangkan.",body:'<span class="label">Penjelasan</span>Setiap bahaya wajib diupayakan untuk dihilangkan atau diminimalisir.<span class="label">Contoh</span>Rukhshah ibadah bagi orang sakit atau musafir.'},{ar:"اَلْعَادَةُ مُحَكَّمَةٌ",label:"Kaidah Induk 3",terjemah:"Kebiasaan dapat dijadikan pertimbangan hukum.",body:'<span class="label">Penjelasan</span>Tradisi masyarakat yang tidak bertentangan syariat bisa dijadikan rujukan hukum.<span class="label">Contoh</span>Standar mahar merujuk pada ʿurf setempat.'},{ar:"اَلْمَشَقَّةُ تَجْلِبُ التَّيْسِيرَ",label:"Kaidah Induk 4",terjemah:"Kesulitan mendatangkan kemudahan.",body:'<span class="label">Penjelasan</span>Ketika seseorang menghadapi kesulitan, syariat memberikan keringanan.<span class="label">Contoh</span>Tayamum dibolehkan saat air tidak tersedia.'},{ar:"اَلْأُمُورُ بِمَقَاصِدِهَا",label:"Kaidah Induk 5",terjemah:"Setiap perkara dinilai berdasarkan tujuannya.",body:'<span class="label">Penjelasan</span>Niat menjadi penentu utama dalam menilai status hukum suatu perbuatan.<span class="label">Contoh</span>Membasuh tangan biasa vs. wudhu — bedanya di niat.'}];
+const dUshul=[{ar:"تَعْرِيفُ أُصُولِ الْفِقْهِ",label:"Pondasi",terjemah:"Definisi dan Objek Kajian Ushul Fikih",body:'<span class="label">Definisi</span>Ushul fikih: ilmu tentang kaidah dan metode menggali hukum syariat dari sumber-sumbernya.<span class="label">Bedanya</span>Fikih = produk hukum; ushul fikih = metodologi sampai pada hukum tersebut.'},{ar:"الْقُرْآنُ مَصْدَرُ الْأَحْكَامِ الْأَوَّلُ",label:"Sumber 1",terjemah:"Al-Qurʾān sebagai Sumber Hukum Pertama",body:'<span class="label">Kedudukan</span>Sumber hukum pertama dan utama.<span class="label">Pembagian</span>Qatʿi (maknanya pasti) dan Zhanni (membuka ruang penafsiran).'},{ar:"الْحَدِيثُ مَصْدَرُ الْأَحْكَامِ الثَّانِي",label:"Sumber 2",terjemah:"Hadis sebagai Sumber Hukum Kedua",body:'<span class="label">Fungsi</span>Menjelaskan, merinci, atau menetapkan hukum baru yang tidak disebutkan eksplisit dalam Al-Qurʾān.<span class="label">Klasifikasi</span>Shahih, hasan, dhaʿif.'},{ar:"الْإِجْمَاعُ وَالْقِيَاسُ",label:"Sumber 3 & Metode",terjemah:"Ijmaʿ dan Qiyas",body:'<span class="label">Ijmaʿ</span>Kesepakatan seluruh mujtahid pada satu masa.<span class="label">Qiyas</span>Menyamakan hukum perkara baru dengan perkara lama karena kesamaan illat.<span class="label">Contoh</span>Narkotika diharamkan via qiyas khamr (illat: merusak akal).'},{ar:"الْحُكْمُ التَّكْلِيفِيُّ الْخَمْسَةُ",label:"Klasifikasi Hukum",terjemah:"Lima Kategori Hukum Taklifi",body:'<span class="label">Wajib</span>Harus dikerjakan, berdosa jika ditinggalkan.<span class="label">Sunnah</span>Berpahala jika dikerjakan.<span class="label">Haram</span>Berdosa jika dikerjakan.<span class="label">Makruh</span>Dianjurkan ditinggalkan.<span class="label">Mubah</span>Boleh dikerjakan atau ditinggalkan.'}];
+const dKaidahUshul=[{ar:"اَلْأَمْرُ يُفِيدُ الْوُجُوبَ",label:"Kaidah Lafzhiyah 1",terjemah:"Kalimat perintah (amr) menunjukkan kewajiban.",body:'<span class="label">Penjelasan</span>Setiap perintah dalam Al-Qurʾān/hadis dipahami sebagai kewajiban selama tidak ada qarinah yang mengalihkannya.'},{ar:"اَلنَّهْيُ يُفِيدُ التَّحْرِيمَ",label:"Kaidah Lafzhiyah 2",terjemah:"Kalimat larangan (nahy) menunjukkan keharaman.",body:'<span class="label">Penjelasan</span>Larangan dipahami haram kecuali ada qarinah ke makruh.<span class="label">Contoh</span>Larangan riba = pengharaman mutlak.'},{ar:"اَلْعَامُّ يَبْقَى عَلَى عُمُومِهِ",label:"Kaidah Lafzhiyah 3",terjemah:"Lafal umum tetap berlaku secara umum.",body:'<span class="label">Penjelasan</span>Kata bermakna umum dipahami secara umum kecuali ada dalil pengkhusus (mukhashshish).'},{ar:"لَا اجْتِهَادَ فِي مَحَلِّ النَّصِّ",label:"Kaidah Ijtihad",terjemah:"Tidak ada ijtihad pada perkara yang sudah jelas dalilnya.",body:'<span class="label">Penjelasan</span>Ijtihad hanya pada perkara yang dalilnya zhanni atau tidak ada dalil eksplisitnya.'}];
+const dMaqashid=[{ar:"مُقَدِّمَةُ مَقَاصِدِ الشَّرِيعَةِ",label:"Pengantar",terjemah:"Pengantar Maqāṣid al-Sharīʿah",body:'<span class="label">Definisi</span>Tujuan syariat: mewujudkan kemaslahatan dan menghindarkan kerusakan.<span class="label">Tingkatan</span>Dharuriyat → Hajiyat → Tahsiniyat.'},{ar:"حِفْظُ الدِّينِ",label:"Dharuriyat 1",terjemah:"Menjaga Agama",body:'<span class="label">Contoh</span>Shalat lima waktu, larangan riddah, kewajiban dakwah.'},{ar:"حِفْظُ النَّفْسِ",label:"Dharuriyat 2",terjemah:"Menjaga Jiwa",body:'<span class="label">Contoh</span>Hukum qisas, kebolehan berobat, kewajiban nafkah.'},{ar:"حِفْظُ الْعَقْلِ",label:"Dharuriyat 3",terjemah:"Menjaga Akal",body:'<span class="label">Klasik</span>Pengharaman khamr.<span class="label">Kontemporer</span>Kewajiban tabayyun sebelum menyebarkan informasi.'},{ar:"حِفْظُ النَّسْلِ",label:"Dharuriyat 4",terjemah:"Menjaga Keturunan",body:'<span class="label">Contoh</span>Syariat nikah, larangan zina, ketentuan nasab dalam waris.'},{ar:"حِفْظُ الْمَالِ",label:"Dharuriyat 5",terjemah:"Menjaga Harta",body:'<span class="label">Contoh</span>Larangan riba dan pencurian, kewajiban zakat, perniagaan yang adil.'},{ar:"الْحَاجِيَّاتُ وَالتَّحْسِينِيَّاتُ",label:"Tingkatan 2 & 3",terjemah:"Hajiyat dan Tahsiniyat",body:'<span class="label">Hajiyat</span>Kebutuhan sekunder. Contoh: rukhshah shalat bagi musafir.<span class="label">Tahsiniyat</span>Kebutuhan tersier. Contoh: menutup aurat melebihi batas minimal.'}];
+const dVisual=[
+  {title:'Berapa "dua kullah"?',fact:"≈ 216 liter",desc:'Menurut mazhab Syafiʿi, dua kullah setara kubus air ±60×60×60 cm (≈216 liter). Air sebanyak ini tidak mudah najis kecuali berubah rasa, warna, atau baunya. Dasar hukumnya: HR. Abu Dawud, "Apabila air telah mencapai dua kullah, maka tidak ada sesuatu pun yang menajiskannya."'},
+  {title:"Lima Miqat Haji",fact:"5 titik batas ihram",desc:"Lima miqat makani sebagai batas tempat dimulainya ihram: (1) Dzul Hulaifah untuk jamaah dari arah Madinah, (2) Juhfah untuk dari arah Syam/Mesir/Eropa, (3) Yalamlam untuk dari arah Yaman dan Indonesia, (4) Qarnul Manazil untuk dari arah Najd/Riyadh, dan (5) Dzatu ʿIrq untuk dari arah Irak."},
+  {title:"Jarak Shaf yang Sah",fact:"Asal masih terhubung",desc:"Tidak ada ukuran pasti jarak antar shaf. Yang menjadi patokan adalah kesinambungan (ittisal) — makmum masih dapat mengikuti gerakan imam. Shaf yang terputus lebar (misal karena jalan) dapat memengaruhi keabsahan berjamaah menurut sebagian ulama."},
+  {title:"Batas Tanah Haram",fact:"Bukan sekadar kota Makkah",desc:"Tanah Haram memiliki batas geografis tertentu di sekeliling Makkah yang ditetapkan oleh Nabi Ibrahim AS. Di dalam batas ini berlaku hukum-hukum khusus: larangan berburu binatang, menebang pohon, dan larangan masuk bagi non-Muslim."}
+];
+const gFikih=[{term:"Thaharah",ar:"طهارة",def:"Bersuci dari hadas dan najis sebagai syarat sahnya ibadah tertentu seperti shalat."},{term:"Hadas",ar:"حدث",def:"Keadaan tidak suci pada diri seseorang yang menghalangi pelaksanaan ibadah tertentu."},{term:"Najis",ar:"نجاسة",def:"Kotoran yang bersifat materi dan menjadikan sesuatu tidak suci secara lahiriah."},{term:"Wudhu",ar:"وضوء",def:"Bersuci dengan air untuk menghilangkan hadas kecil, sebagai syarat sah shalat."},{term:"Tayamum",ar:"تيمم",def:"Bersuci dengan debu yang suci sebagai pengganti wudhu atau mandi ketika tidak ada air."},{term:"Nisab",ar:"نصاب",def:"Batas minimal harta yang menyebabkan wajibnya zakat."},{term:"Haul",ar:"حول",def:"Masa kepemilikan harta selama satu tahun hijriah sebagai syarat wajib zakat."},{term:"Miqat",ar:"ميقات",def:"Batas waktu dan tempat dimulainya ihram haji atau umrah."},{term:"Ihram",ar:"إحرام",def:"Niat memasuki ibadah haji atau umrah, disertai memakai pakaian ihram."},{term:"Rukun",ar:"ركن",def:"Bagian pokok suatu ibadah yang wajib ada; jika ditinggalkan maka ibadah tidak sah."},{term:"Syarat",ar:"شرط",def:"Sesuatu yang harus terpenuhi sebelum ibadah dilaksanakan agar sah."},{term:"Sunnah",ar:"سنة",def:"Perbuatan yang dianjurkan; berpahala jika dikerjakan, tidak berdosa jika ditinggalkan."}];
+const gUshul=[{term:"Dharuriyat",ar:"ضروريات",def:"Kebutuhan primer yang wajib dipelihara; jika hilang akan merusak tatanan kehidupan."},{term:"Hajiyat",ar:"حاجيات",def:"Kebutuhan sekunder yang meringankan kesulitan dalam menjalani kehidupan."},{term:"Tahsiniyat",ar:"تحسينيات",def:"Kebutuhan tersier untuk kesempurnaan akhlak, adab, dan keindahan."},{term:"Tabayyun",ar:"تبين",def:"Memastikan kebenaran suatu berita sebelum menerima atau menyebarkannya."},{term:"Ikhtilaf",ar:"اختلاف",def:"Perbedaan pendapat ulama dalam suatu masalah hukum fikih."},{term:"Istinbath",ar:"استنباط",def:"Proses penggalian atau penetapan hukum dari sumber-sumbernya."},{term:"Qiyas",ar:"قياس",def:"Menyamakan hukum suatu perkara baru dengan perkara yang sudah ada nashnya karena kesamaan illat."},{term:"Ijma'",ar:"إجماع",def:"Kesepakatan para mujtahid dari umat Islam pada suatu masa terhadap hukum suatu permasalahan."},{term:"Illat",ar:"علة",def:"Sebab atau alasan hukum yang menjadi dasar penetapan suatu ketentuan syariat."},{term:"Ijtihad",ar:"اجتهاد",def:"Pengerahan segenap kemampuan mujtahid untuk menghasilkan hukum syariat dari dalil-dalilnya."},{term:"Rukhshah",ar:"رخصة",def:"Keringanan hukum yang diberikan syariat dalam kondisi tertentu yang memberatkan."},{term:"Maqashid",ar:"مقاصد",def:"Tujuan-tujuan syariat yang hendak dicapai dalam penetapan hukum Islam."}];
+
+/* ── RENDER BAB GRID (pencarian mencakup semua isi) ── */
+function renderBabGrid(q=''){
+  const cont=document.getElementById('bab-grid-dasar');
+  cont.innerHTML=babData.map(b=>{
+    const cardTxt=(b.h3+' '+b.p).toLowerCase();
+    const fullTxt=getBabFullText(b.key).toLowerCase();
+    const v=!q||(cardTxt+' '+fullTxt).includes(q.toLowerCase());
+    return '<div class="bab-card'+(v?'':' hidden')+'" data-bab="'+b.key+'"><div class="icon"><i class="ti '+b.icon+'"></i></div><h3>'+hlText(b.h3,q)+'</h3><p>'+hlText(b.p,q)+'</p><span class="count">'+b.count+'</span></div>';
+  }).join('');
+  cont.querySelectorAll('.bab-card').forEach(c=>c.addEventListener('click',()=>{cont.querySelectorAll('.bab-card').forEach(x=>x.classList.remove('active-bab'));c.classList.add('active-bab');renderSubtopik(c.dataset.bab);}));
+}
+renderBabGrid();
+
+/* ── RENDER SUBTOPIK ── */
+function renderSubtopik(key){
+  const bab=dataDasar[key],list=document.getElementById('subtopik-list');
+  document.getElementById('subtopik-head').textContent=bab.title;
+  document.getElementById('subtopik-items').innerHTML=bab.items.map(it=>'<div class="subtopik-item"><div class="subtopik-trigger"><h4>'+it.h+'</h4><i class="ti ti-chevron-down"></i></div><div class="subtopik-body"><div class="subtopik-content">'+(it.dalil?'<div class="dalil">'+it.dalil+'</div><div class="dalil-terjemah">'+it.terjemah+'</div>':'')+'<p>'+it.teks+'</p>'+(it.ikhtilaf?'<div class="ikhtilaf"><span class="madz">Ikhtilaf:</span> '+it.ikhtilaf+'</div>':'')+'</div></div></div>').join('');
+  list.querySelectorAll('.subtopik-trigger').forEach(t=>t.addEventListener('click',()=>t.parentElement.classList.toggle('open')));
+  list.classList.add('visible');list.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+document.getElementById('search-dasar').addEventListener('input',e=>{renderBabGrid(e.target.value);if(!e.target.value)document.getElementById('subtopik-list').classList.remove('visible');});
+
+/* ── RENDER ACCORDION (pencarian mencakup isi body) ── */
+function renderAccordion(cid,data,sid){
+  const cont=document.getElementById(cid);
+  function draw(q=''){
+    cont.innerHTML=data.map(item=>{
+      const cleanBody=stripHtml(item.body||'');
+      const s=(item.ar+' '+(item.terjemah||'')+' '+cleanBody).toLowerCase();
+      const v=!q||s.includes(q.toLowerCase());
+      return '<div class="accordion-item reveal'+(v?'':' hidden')+'"><div class="accordion-head"><div style="flex:1"><div class="accordion-arabic">'+item.ar+'</div>'+(item.terjemah?'<div class="accordion-sub">'+hlText(item.terjemah,q)+'</div>':'')+'</div><span class="accordion-label">'+item.label+'</span><i class="ti ti-chevron-down"></i></div><div class="accordion-body"><div class="accordion-content">'+item.body+'</div></div></div>';
+    }).join('');
+    cont.querySelectorAll('.accordion-head').forEach(h=>h.addEventListener('click',()=>h.parentElement.classList.toggle('open')));setupReveal();
+  }
+  draw();if(sid)document.getElementById(sid).addEventListener('input',e=>draw(e.target.value));
+}
+renderAccordion('accordion-kaidah-fikih',dKaidahFikih,'search-kaidah-fikih');
+renderAccordion('accordion-ushul',dUshul,'search-ushul');
+renderAccordion('accordion-kaidah-ushul',dKaidahUshul,'search-kaidah-ushul');
+renderAccordion('accordion-maqashid',dMaqashid,'search-maqashid');
+
+/* ── RENDER VISUAL (tanpa kotak gambar/SVG) ── */
+function renderVisual(){
+  const cont=document.getElementById('visual-list');
+  function draw(q=''){
+    cont.innerHTML=dVisual.map(v=>{
+      const s=(v.title+' '+v.fact+' '+v.desc).toLowerCase(),vis=!q||s.includes(q.toLowerCase());
+      return '<div class="visual-item reveal'+(vis?'':' hidden')+'">'
+        +'<div class="visual-trigger"><span class="vtitle">'+hlText(v.title,q)+'</span><span class="vfact">'+v.fact+'</span><i class="ti ti-chevron-down"></i></div>'
+        +'<div class="visual-body-wrap"><div class="visual-desc-only">'+hlText(v.desc,q)+'</div></div>'
+        +'</div>';
+    }).join('');
+    cont.querySelectorAll('.visual-trigger').forEach(t=>t.addEventListener('click',()=>t.parentElement.classList.toggle('open')));setupReveal();
+  }
+  draw();document.getElementById('search-visual').addEventListener('input',e=>draw(e.target.value));
+}
+renderVisual();
+
+/* ── RENDER GLOSARIUM ── */
+function renderGloss(cid,data,sid){
+  const cont=document.getElementById(cid);
+  function draw(q=''){
+    cont.innerHTML=data.map(g=>{
+      const s=(g.term+' '+g.ar+' '+g.def).toLowerCase(),v=!q||s.includes(q.toLowerCase());
+      return '<div class="gloss-item reveal'+(v?'':' hidden')+'"><div class="gloss-trigger"><div class="term-wrap"><span class="term">'+hlText(g.term,q)+'</span><span class="ar">'+g.ar+'</span></div><i class="ti ti-chevron-down"></i></div><div class="gloss-body"><div class="gloss-def">'+g.def+'</div></div></div>';
+    }).join('');
+    cont.querySelectorAll('.gloss-trigger').forEach(t=>t.addEventListener('click',()=>t.parentElement.classList.toggle('open')));setupReveal();
+  }
+  draw();document.getElementById(sid).addEventListener('input',e=>draw(e.target.value));
+}
+renderGloss('gloss-fikih',gFikih,'search-gloss-fikih');
+renderGloss('gloss-ushul',gUshul,'search-gloss-ushul');
+
+/* ── NAV ── */
+document.querySelectorAll('.nav-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel=document.getElementById('panel-'+tab.dataset.panel);if(!panel)return;
+    panel.classList.add('active');
+    if(tab.dataset.panel==='lab')fetchLab(false);
+    panel.querySelectorAll('.reveal').forEach(el=>{el.classList.remove('in-view');requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('in-view')));});
+  });
+});
+
+/* ── SCROLL REVEAL ── */
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in-view');}),{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+function setupReveal(){document.querySelectorAll('.reveal:not(.in-view)').forEach(el=>ro.observe(el));}
+setupReveal();
+document.querySelectorAll('.panel.active .reveal').forEach(el=>requestAnimationFrame(()=>el.classList.add('in-view')));
+
+/* ── MODAL ── */
+function openModal(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.modal-close').forEach(btn=>btn.addEventListener('click',()=>closeModal(btn.dataset.close)));
+document.querySelectorAll('.modal-overlay').forEach(ov=>ov.addEventListener('click',e=>{if(e.target===ov)closeModal(ov.id);}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(ov=>closeModal(ov.id));});
+document.getElementById('fab-saran').addEventListener('click',()=>openModal('modal-saran'));
+document.getElementById('fab-quiz').addEventListener('click',()=>{initQuiz();openModal('modal-quiz');});
+
+/* ── QUIZ ── */
+const QUIZ=[
+  {q:"Yang termasuk sumber hukum Islam yang pertama adalah...",opts:["Hadis","Al-Qurʾān","Ijmaʿ","Qiyas"],ans:1,expl:"Al-Qurʾān adalah sumber hukum pertama dan utama dalam Islam."},
+  {q:"Kaidah «اَلضَّرَرُ يُزَالُ» bermakna...",opts:["Keyakinan tidak hilang oleh keraguan","Kebiasaan dapat dijadikan hukum","Kemudaratan harus dihilangkan","Perkara dinilai dari tujuannya"],ans:2,expl:"Kaidah ini menegaskan bahwa setiap kemudaratan wajib diupayakan untuk dihilangkan."},
+  {q:"Dharuriyat dalam maqashid al-syariah adalah...",opts:["Kebutuhan tersier","Kebutuhan sekunder","Kebutuhan pelengkap","Kebutuhan primer yang wajib dipelihara"],ans:3,expl:"Dharuriyat adalah kebutuhan primer; jika tidak terpenuhi, tatanan kehidupan akan rusak."},
+  {q:"Miqat makani untuk jemaah haji dari arah Yaman/Indonesia adalah...",opts:["Dzul Hulaifah","Juhfah","Qarnul Manazil","Yalamlam"],ans:3,expl:"Yalamlam adalah miqat makani untuk jamaah dari arah Yaman dan Indonesia."},
+  {q:"Qiyas dalam ushul fikih adalah...",opts:["Kesepakatan para ulama mujtahid","Menyamakan hukum perkara baru dengan perkara lama karena kesamaan illat","Kemaslahatan umum tanpa dalil eksplisit","Pengerahan kemampuan dalam berijtihad"],ans:1,expl:"Qiyas menyamakan hukum perkara yang belum ada nashnya dengan perkara yang sudah ada nashnya karena kesamaan illat."}
+];
+let qIdx=0,score=0,answered=false;
+function initQuiz(){qIdx=0;score=0;answered=false;renderQuiz();}
+function renderQuiz(){
+  const body=document.getElementById('quiz-body');
+  if(qIdx>=QUIZ.length){const pct=Math.round(score/QUIZ.length*100);body.innerHTML=`<div class="quiz-result"><div class="score">${score}/${QUIZ.length}</div><p>${pct>=80?'Sangat baik! Pemahaman Anda sangat solid.':pct>=60?'Cukup baik! Terus tingkatkan.':'Tetap semangat! Pelajari kembali materinya.'}</p><br><button class="quiz-btn" onclick="initQuiz()" style="margin:0 auto;display:block;">Ulangi Quiz</button></div>`;return;}
+  const q=QUIZ[qIdx];answered=false;
+  body.innerHTML=`<div class="quiz-q"><div class="qnum">Soal ${qIdx+1} dari ${QUIZ.length}</div><div class="qtxt">${q.q}</div><div class="quiz-opts">${q.opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}">${String.fromCharCode(65+i)}. ${o}</button>`).join('')}</div></div><div class="quiz-nav"><span class="quiz-prog">Benar: ${score}</span><button class="quiz-btn" id="quiz-next" style="opacity:.4;pointer-events:none;">Berikutnya →</button></div>`;
+  body.querySelectorAll('.quiz-opt').forEach(btn=>{btn.addEventListener('click',()=>{if(answered)return;answered=true;const i=+btn.dataset.i,ok=(i===q.ans);if(ok)score++;body.querySelectorAll('.quiz-opt').forEach((b,j)=>{b.disabled=true;if(j===q.ans)b.classList.add('correct');});if(!ok)btn.classList.add('wrong');const nb=document.getElementById('quiz-next');nb.style.opacity='1';nb.style.pointerEvents='auto';const exp=document.createElement('div');exp.style.cssText='margin-top:10px;padding:10px 14px;background:rgba(255,255,255,0.08);border-radius:9px;font-size:13px;color:rgba(255,255,255,0.85);border-left:3px solid #D4AF37;';exp.textContent=q.expl;body.querySelector('.quiz-opts').after(exp);});});
+  document.getElementById('quiz-next').addEventListener('click',()=>{qIdx++;renderQuiz();});
+}
+
+/* ════ LABORATORIUM WĀQI'IYYAH ════ */
+const LAB={CACHE_KEY:'lab_waq_v5',CACHE_TTL:24*60*60*1000,API_URL:'https://api.rss2json.com/v1/api.json?rss_url='+encodeURIComponent('https://islam.nu.or.id/bahtsul-masail/feed')+'&count=14',articles:[],filter:'Semua',lastTs:null,loading:false};
+const LAB_KW={'Ushul Fikih':['ushul fikih','dalil','ijtihad','qiyas','ijma','nash','illat','istidlal','mujtahid','fatwa','istihsan','maslahah mursalah','sadd dzariah'],'Kaidah Fikih':['kaidah fikih','qawaid','keyakinan','kemudaratan','dharar','masyaqqah','urf','adat','taisir','rukhshah','mafsadah'],'Maqāṣid':['maqashid','maqasid','kemaslahatan','maslahat','hifdzun nafs','hifdzul mal','dharuriyat','hajiyat','tahsiniyat'],'Fikih Muamalah':['muamalah','jual beli','akad','riba','bank','saham','kripto','investasi','asuransi','gadai','fintech','pinjaman','transaksi'],'Fikih Ibadah':['ibadah','shalat','wudhu','puasa','zakat','haji','thaharah','ramadhan','sunnah','qurban']};
+const LAB_BCSS={'Ushul Fikih':'lb-ushul','Kaidah Fikih':'lb-kaidah','Maqāṣid':'lb-maqashid','Fikih Muamalah':'lb-muamalah','Fikih Ibadah':'lb-ibadah','Umum':'lb-umum'};
+const LAB_DEMO=[{title:"Hukum Pinjaman Online (Fintech P2P Lending) dalam Fikih Muamalah",desc:"Bahtsul masail membahas status akad dalam aplikasi pinjaman peer-to-peer lending. Ulama menganalisis apakah bunga yang dikenakan termasuk riba atau dapat dikategorikan sebagai ujrah dalam akad ijarah.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-1*86400000).toISOString()},{title:"Qiyas Khamr atas Narkotika: Kajian Ushul Fikih dan Penetapan Illat Pengharaman",desc:"Penerapan metode qiyas dalam kasus narkotika. Illat yang digunakan adalah ifsat al-'aql (merusak akal), sama dengan pengharaman khamr dalam Al-Qur'an.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-2*86400000).toISOString()},{title:"Maqashid al-Syariah dan Regulasi Perlindungan Data Pribadi di Era Digital",desc:"Analisis relevansi hifdz al-'aql dan hifdz al-mal terhadap regulasi privasi digital. Perlindungan data dinilai masuk cakupan dharuriyat kontemporer.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-3*86400000).toISOString()},{title:"Kaidah al-Masyaqqah Tajlib al-Taysir: Implementasi pada Ibadah di Masa Pandemi",desc:"Telaah penerapan kaidah fikih 'kesulitan mendatangkan kemudahan' dalam pelaksanaan shalat berjamaah dan ibadah lainnya pada situasi darurat.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-5*86400000).toISOString()},{title:"Hukum Jual Beli Aset Kripto (Cryptocurrency) menurut Fikih Muamalah",desc:"Perdebatan status hukum mata uang kripto sebagai mal yang diakui syariat. Ulama membahas apakah Bitcoin memenuhi syarat mutaqawwam sehingga dapat menjadi objek akad.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-6*86400000).toISOString()},{title:"Istihsan sebagai Alternatif Qiyas dalam Penentuan Waktu Shalat di Kutub",desc:"Kajian penggunaan metode istihsan untuk menentukan waktu shalat di wilayah kutub yang tidak memiliki siklus siang-malam normal.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-8*86400000).toISOString()},{title:"Dharuriyat al-Khams dan Tanggung Jawab Ekologis dalam Maqashid al-Syariah",desc:"Eksplorasi hubungan lima pokok dharuriyat dengan kewajiban menjaga kelestarian lingkungan hidup sebagai kemaslahatan kontemporer.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-10*86400000).toISOString()},{title:"Status Hukum Zakat Profesi: Ijtihad Ulama dan Ruang Lingkup Nash",desc:"Diskusi dasar nash Al-Qur'an dan hadis untuk zakat profesi. Ulama mengkaji ruang ijtihad dalam menetapkan nisab dan kadar zakat bagi penghasilan modern.",link:"https://islam.nu.or.id/bahtsul-masail",date:new Date(Date.now()-12*86400000).toISOString()}];
+function labReadCache(){try{const r=localStorage.getItem(LAB.CACHE_KEY);if(!r)return null;const c=JSON.parse(r);if(Date.now()-c.ts>LAB.CACHE_TTL){localStorage.removeItem(LAB.CACHE_KEY);return null;}return c;}catch(e){return null;}}
+function labWriteCache(a){try{localStorage.setItem(LAB.CACHE_KEY,JSON.stringify({articles:a,ts:Date.now()}));}catch(e){}}
+function labDetectCats(title,desc){const hay=(title+' '+desc).toLowerCase();const cats=[];for(const[cat,kws]of Object.entries(LAB_KW)){if(kws.some(k=>hay.includes(k)))cats.push(cat);}return cats.length?cats:['Umum'];}
+function labNormalize(raw){const desc=(raw.description||raw.desc||'').replace(/<[^>]+>/g,'').trim().slice(0,280);const title=(raw.title||'Tanpa Judul').trim();return{title,desc:desc||'Klik untuk membaca artikel lengkap.',link:raw.link||raw.url||'https://islam.nu.or.id/bahtsul-masail',date:raw.pubDate||raw.date||new Date().toISOString(),cats:labDetectCats(title,desc)};}
+function labFmtDate(d){try{return new Date(d).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});}catch(e){return '—';}}
+function labTimeAgo(ts){if(!ts)return '';const d=Math.floor((Date.now()-ts)/1000);if(d<60)return 'Baru saja';if(d<3600)return Math.floor(d/60)+' mnt lalu';if(d<86400)return Math.floor(d/3600)+' jam lalu';return Math.floor(d/86400)+' hari lalu';}
+function labMkCard(a,i){const delay=Math.min(i*.06,.5).toFixed(2);const badges=a.cats.map(c=>`<span class="lab-badge ${LAB_BCSS[c]||'lb-umum'}">${c}</span>`).join('');return `<a class="lab-card" href="${a.link}" target="_blank" rel="noopener" style="animation-delay:${delay}s;"><div class="lab-card-top"><div class="lab-badges">${badges}</div><div class="lab-card-date"><i class="ti ti-calendar-event"></i>${labFmtDate(a.date)}</div></div><h4>${a.title}</h4><p>${a.desc}</p><div class="lab-card-footer"><span class="lab-card-src"><i class="ti ti-world"></i>NU Online – Bahtsul Masail</span><span class="lab-read">Baca lengkap <i class="ti ti-external-link"></i></span></div></a>`;}
+function labMkSkel(){return `<div class="lab-skeleton"><div class="lab-sk lsk-b"></div><div class="lab-sk lsk-t1"></div><div class="lab-sk lsk-t2"></div><div class="lab-sk lsk-d1"></div><div class="lab-sk lsk-d2"></div><div class="lab-sk lsk-d3"></div><div class="lab-sk lsk-f"></div></div>`;}
+function labRender(){const grid=document.getElementById('lab-grid');const list=LAB.filter==='Semua'?LAB.articles:LAB.articles.filter(a=>a.cats.includes(LAB.filter));if(!list.length){grid.innerHTML=`<div class="lab-empty"><i class="ti ti-folder-search"></i><h3>Tidak ada artikel</h3><p>Kategori "${LAB.filter}" belum tersedia.</p></div>`;labChip(0);return;}grid.innerHTML=list.map((a,i)=>labMkCard(a,i)).join('');labChip(list.length);}
+function labCounts(){const t={all:0,u:0,k:0,m:0,mu:0,i:0};LAB.articles.forEach(a=>{t.all++;if(a.cats.includes('Ushul Fikih'))t.u++;if(a.cats.includes('Kaidah Fikih'))t.k++;if(a.cats.includes('Maqāṣid'))t.m++;if(a.cats.includes('Fikih Muamalah'))t.mu++;if(a.cats.includes('Fikih Ibadah'))t.i++;});const g=id=>document.getElementById(id);g('lfc-all').textContent=t.all;g('lfc-ushul').textContent=t.u;g('lfc-kaidah').textContent=t.k;g('lfc-maqashid').textContent=t.m;g('lfc-muamalah').textContent=t.mu;g('lfc-ibadah').textContent=t.i;}
+function labChip(n){const el=document.getElementById('lab-chip'),num=document.getElementById('lab-count');el.style.display='flex';num.textContent=n;}
+function labTs(){if(!LAB.lastTs)return;const el=document.getElementById('lab-updated'),t=document.getElementById('lab-updated-text');el.style.display='flex';t.textContent='Diperbarui '+labTimeAgo(LAB.lastTs);}
+function labStatus(type,msg){const dot=document.getElementById('lab-dot'),txt=document.getElementById('lab-status-text');dot.className='lab-dot';if(type==='live')dot.classList.add('live');else if(type==='offline')dot.classList.add('offline');txt.textContent=msg;}
+function labSetLoading(on){LAB.loading=on;const btn=document.getElementById('btn-lab-refresh'),grid=document.getElementById('lab-grid');if(on){btn.classList.add('spinning');btn.disabled=true;grid.innerHTML=Array(6).fill(0).map(labMkSkel).join('');}else{btn.classList.remove('spinning');btn.disabled=false;}}
+async function fetchLab(force=false){
+  if(LAB.loading)return;
+  if(!force){const c=labReadCache();if(c){LAB.articles=c.articles;LAB.lastTs=c.ts;labCounts();labRender();labTs();labStatus('live','Data dari cache');return;}}
+  labSetLoading(true);labStatus('live','Mengambil data…');
+  document.getElementById('lab-demo-notice').classList.remove('show');
+  try{const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),10000);const res=await fetch(LAB.API_URL,{signal:ctrl.signal});clearTimeout(timer);if(!res.ok)throw new Error('HTTP '+res.status);const json=await res.json();if(json.status!=='ok'||!json.items?.length)throw new Error('Invalid');LAB.articles=json.items.map(labNormalize);LAB.lastTs=Date.now();labWriteCache(LAB.articles);labStatus('live','Data terkini');}
+  catch(e){LAB.articles=LAB_DEMO.map(labNormalize);LAB.lastTs=Date.now();document.getElementById('lab-demo-notice').classList.add('show');labStatus('offline','Mode demo');}
+  labSetLoading(false);labCounts();labRender();labTs();
+}
+document.getElementById('lab-filter-row').addEventListener('click',e=>{const btn=e.target.closest('.lab-filter');if(!btn)return;LAB.filter=btn.dataset.cat;document.querySelectorAll('.lab-filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');labRender();});
+setInterval(labTs,60000);
+</script>
+</body>
+</html>
